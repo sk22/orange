@@ -6,6 +6,24 @@ const StyledNav = styled.nav`
   ${card}
   padding: 0;
   overflow: hidden;
+
+  ${mobile(css`
+    height: auto;
+    max-height: 0;
+    opacity: 0;
+    transform: scale(0.97);
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    transition-property: transform, opacity, max-height;
+    
+    ${p =>
+      p.toggled &&
+      css`
+        max-height: var(--nav-mobile-max-height);
+        opacity: 1;
+        transform: scale(1);
+      `}
+  `)}
 `
 
 const NavUl = styled.ul`
@@ -29,6 +47,7 @@ const NavLi = styled.li`
   display: flex;
   flex-direction: column;
   min-height: calc(2 * var(--nav-header-padding) + var(--nav-header-font-size));
+  overflow: hidden;
 
   & + & {
     ${mobile(css`
@@ -96,14 +115,13 @@ const SubUl = styled.ul`
   list-style: none;
   transition-duration: 0.7s;
   transition-timing-function: ease;
-  /* transition: 0.7s margin-bottom ease; */
   transform-origin: bottom;
   transform: scaleY(0);
   transition-property: margin-bottom, transform;
   opacity: 0;
   display: flex;
   flex-direction: column;
-  margin-bottom: -30rem;
+  margin-bottom: calc(-1 * var(--nav-items-max-height));
 
   ${laptop(css`
     ${NavUl}:hover &, ${NavUl}:focus-within & {
@@ -153,8 +171,8 @@ const NavItem = props => (
   </SubLi>
 )
 
-const Navigation = () => (
-  <StyledNav>
+const Navigation = ({ toggled }) => (
+  <StyledNav toggled={toggled}>
     <NavUl>
       <NavLi>
         <NavLiHeader>Programm</NavLiHeader>
