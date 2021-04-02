@@ -4,7 +4,7 @@ import Header from './components/Header'
 import Navigation from './components/Navigation'
 import Page from './components/Page'
 import Player from './components/Player'
-import theme from './themes'
+import orange from './themes/orange'
 
 const GlobalStyle = createGlobalStyle`
   ${p => p.theme.global}
@@ -14,7 +14,7 @@ const App = () => {
   const [navToggled, setNavToggled] = useState(false)
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={orange}>
       <GlobalStyle />
       <Page>
         <Header
