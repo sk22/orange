@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
 import logoIcon from '../assets/logo-icon.png'
 import logoText from '../assets/logo-text.png'
-
+import { RoundButton } from './Button'
 import { laptop, desktop } from '../themes/media'
 
 const StyledHeader = styled.header`
@@ -44,29 +44,11 @@ const StyledLogoText = styled.img`
   `)}
 `
 
-const RoundButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 1.2rem;
-  border-radius: 100%;
-  border: var(--separator-width) solid var(--light-gray);
-  background: transparent;
-
-  &:hover,
-  &:focus {
-    background: var(--light-gray);
-  }
-`
-
 const StyledMenuButton = styled(RoundButton)`
   ${laptop(css`
     display: none;
   `)}
   margin-left: auto;
-
 `
 
 const Header = ({ onToggleNav, navToggled }) => (

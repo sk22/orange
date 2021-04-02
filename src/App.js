@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Header from './components/Header'
-import MiniPlayer from './components/MiniPlayer'
 import Navigation from './components/Navigation'
 import Page from './components/Page'
+import Player from './components/Player'
 import { light } from './themes'
 
 const GlobalStyle = createGlobalStyle`
@@ -22,7 +22,7 @@ const App = () => {
           navToggled={navToggled}
         />
         <Navigation toggled={navToggled} />
-        <MiniPlayer />
+        <Player />
       </Page>
     </ThemeProvider>
   )

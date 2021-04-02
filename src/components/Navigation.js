@@ -216,7 +216,7 @@ const Navigation = ({ toggled }) => (
             Musik Tracklist
           </NavItem>
           <NavItem href="/de/rm-vertretung">
-            Radiomacher*innen Vertretung
+            Radiomacher_innen-Vertretung
           </NavItem>
           <NavItem href="/de/hoeren">ORANGE 94.0 Hören</NavItem>
           <NavItem href="/de/programmgremium">Programmgremium</NavItem>

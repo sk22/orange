@@ -2,14 +2,13 @@ import styled, { css } from 'styled-components'
 import { laptop } from '../themes/media'
 
 export const block = css`
-  border-radius: 0.5rem;
-  padding: 1.5rem;
+  padding: 1.2rem;
 
   ${laptop(css`
-    padding: 1.5rem 2rem;
+    padding: 1.5rem;
   `)}
 `
 
-const Block = styled.section`${block}`
+const Block = styled.div`${block}`
 
 export default Block
