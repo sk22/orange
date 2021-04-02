@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import Header from './components/Header'
+import MiniPlayer from './components/MiniPlayer'
+import Navigation from './components/Navigation'
+import Page from './components/Page'
+import { light } from './themes'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
 
-export default App;
+  :root {
+    ${p => p.theme.root}
+  }
+
+  html {
+    background: var(--backdrop);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+`
+
+const App = () => (
+  <ThemeProvider theme={light}>
+    <GlobalStyle />
+    <Page>
+      <Header />
+      <Navigation />
+      <MiniPlayer />
+    </Page>
+  </ThemeProvider>
+)
+
+export default App
