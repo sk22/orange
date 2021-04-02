@@ -1,3 +1,5 @@
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
 import { laptop, mobile } from '../themes/media'
 import { card } from './Card'
@@ -15,7 +17,7 @@ const StyledNav = styled.nav`
     transition-duration: 0.4s;
     transition-timing-function: ease;
     transition-property: transform, opacity, max-height;
-    
+
     ${p =>
       p.toggled &&
       css`
@@ -105,7 +107,7 @@ const uncollapsedCss = css`
   display: flex;
 `
 
-const SubUl = styled.ul`
+const StyledSubUl = styled.ul`
   display: flex;
   flex: 1;
   padding: 1rem;
@@ -122,6 +124,7 @@ const SubUl = styled.ul`
   display: flex;
   flex-direction: column;
   margin-bottom: calc(-1 * var(--nav-items-max-height));
+  margin-left: 1rem;
 
   ${laptop(css`
     ${NavUl}:hover &, ${NavUl}:focus-within & {
@@ -135,6 +138,8 @@ const SubUl = styled.ul`
     }
   `)}
 `
+
+const SubUl = props => <StyledSubUl className="fa-ul" {...props} />
 
 const SubLi = styled.li`
   & + & {
@@ -167,6 +172,7 @@ const NavLiHeader = styled.button`
 
 const NavItem = props => (
   <SubLi>
+    <FontAwesomeIcon icon={faAngleRight} listItem />
     <NavLink {...props} />
   </SubLi>
 )
