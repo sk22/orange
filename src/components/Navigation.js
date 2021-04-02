@@ -157,6 +157,12 @@ const NavLink = styled.a`
   }
 `
 
+const noEllipsisCss = css`
+  text-overflow: unset;
+  overflow: hidden;
+  white-space: normal;
+`
+
 const NavLiHeader = styled.button`
   padding: 1rem;
   width: 100%;
@@ -168,6 +174,21 @@ const NavLiHeader = styled.button`
   font-weight: unset;
   text-align: unset;
   font-size: unset;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  ${laptop(css`
+    ${NavLi}:hover &, ${NavLi}:focus-within & {
+      ${noEllipsisCss}
+    }
+  `)}
+
+  ${mobile(css`
+    ${NavLi}:focus-within & {
+      ${noEllipsisCss}
+    }
+  `)}
 `
 
 const NavItem = props => (
