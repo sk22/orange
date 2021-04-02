@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import { laptop, mobile } from '../themes/media'
 import { card } from './Card'
 import Link from './Link'
-import Icon from './Icon'
 
 const StyledNav = styled.nav`
   ${card}

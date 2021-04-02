@@ -81,4 +81,6 @@ const global = css`
   }
 `
 
-export default { global }
+const theme = { global }
+
+export default theme
