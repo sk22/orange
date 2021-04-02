@@ -17,9 +17,6 @@ const NavUl = styled.ul`
   margin: 0;
   padding: 0;
   font-size: 0.9rem;
-  min-height: calc(
-    2 * var(--nav-header-padding) + var(--nav-header-font-size)
-  );
 
   ${laptop(css`
     flex-direction: row;
@@ -31,11 +28,13 @@ const NavLi = styled.li`
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: calc(2 * var(--nav-header-padding) + var(--nav-header-font-size));
 
   & + & {
     ${mobile(css`
       border-top: var(--separator-width) solid var(--light-gray);
     `)}
+
     ${laptop(css`
       border-left: var(--separator-width) solid var(--light-gray);
     `)}
@@ -49,21 +48,46 @@ const NavLi = styled.li`
     background: transparent;
   }
 
+  ${NavUl}:hover &::before,
+  ${NavUl}:focus-within &::before {
+    ${laptop(css`
+      transform: scaleY(1);
+    `)}
+    ${mobile(css`
+      transform: scaleX(1);
+    `)}
+  }
+
   &:hover::before,
   &:focus-within::before {
+    opacity: 1;
+  }
+
+  &::before {
     content: '';
     display: block;
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0;
-    left: 0;
+    opacity: 0;
     z-index: -1;
     background: var(--primary);
+    transition: 0.7s transform ease;
+    transform: scaleY(0);
+    transform-origin: top;
   }
 `
 
+const uncollapsedCss = css`
+  margin-bottom: 0;
+  transform: scaleY(1);
+  opacity: 1;
+  display: flex;
+`
+
 const SubUl = styled.ul`
+  display: flex;
   flex: 1;
   padding: 1rem;
   padding-top: 0rem;
@@ -77,25 +101,19 @@ const SubUl = styled.ul`
   transform: scaleY(0);
   transition-property: margin-bottom, transform;
   opacity: 0;
-  display: none;
+  display: flex;
   flex-direction: column;
+  margin-bottom: -30rem;
 
   ${laptop(css`
-    display: flex;
-    margin-bottom: -30rem;
     ${NavUl}:hover &, ${NavUl}:focus-within & {
-      margin-bottom: 0;
-      transform: scaleY(1);
-      opacity: 1;
-      display: flex;
+      ${uncollapsedCss}
     }
   `)}
 
   ${mobile(css`
     ${NavLi}:focus-within & {
-      transform: scaleY(1);
-      opacity: 1;
-      display: flex;
+      ${uncollapsedCss}
     }
   `)}
 `
@@ -110,6 +128,7 @@ const NavLink = styled.a`
   color: unset;
   text-decoration: none;
   border-bottom: var(--separator-width) solid var(--light-gray);
+
   ${NavLi}:hover &, ${NavLi}:focus-within & {
     border-bottom-color: white;
   }
