@@ -128,7 +128,7 @@ const NextUp = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   padding-bottom: 0;
-  border-top: var(--separator-width) solid var(--light-gray);
+  border-top: var(--separator-width) solid var(--separator-color);
 
   ${desktop(css`
     margin: 0;

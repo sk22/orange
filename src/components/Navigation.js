@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
 import { laptop, mobile } from '../themes/media'
 import { card } from './Card'
+import Link from './Link'
+import Icon from './Icon'
 
 const StyledNav = styled.nav`
   ${card}
@@ -53,11 +55,11 @@ const NavLi = styled.li`
 
   & + & {
     ${mobile(css`
-      border-top: var(--separator-width) solid var(--light-gray);
+      border-top: var(--separator-width) solid var(--separator-color);
     `)}
 
     ${laptop(css`
-      border-left: var(--separator-width) solid var(--light-gray);
+      border-left: var(--separator-width) solid var(--separator-color);
     `)}
   }
 
@@ -147,10 +149,13 @@ const SubLi = styled.li`
   }
 `
 
-const NavLink = styled.a`
-  color: unset;
-  text-decoration: none;
-  border-bottom: var(--separator-width) solid var(--light-gray);
+const NavLink = styled(Link)`
+  transition: none;
+
+  &:hover,
+  &:focus {
+    border-bottom-width: 0.1rem;
+  }
 
   ${NavLi}:hover &, ${NavLi}:focus-within & {
     border-bottom-color: white;

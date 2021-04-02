@@ -23,6 +23,7 @@ const StyledHeader = styled.header`
 
 const StyledLogoIcon = styled.img`
   height: 3rem;
+  filter: invert(var(--invert-colors));
 
   ${desktop(css`
     height: 3.5rem;
@@ -31,6 +32,7 @@ const StyledLogoIcon = styled.img`
 
 const StyledLogoText = styled.img`
   display: none;
+  filter: invert(var(--invert-colors));
 
   ${laptop(css`
     display: initial;

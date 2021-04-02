@@ -7,15 +7,16 @@ export const RoundButton = styled.button`
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 100%;
-  border: var(--separator-width) solid var(--light-gray);
+  border: var(--separator-width) solid var(--separator-color);
   background: transparent;
   transition-property: background-color, border-color;
   transition-duration: 0.3s;
   transition-timing-function: ease;
+  color: inherit;
 
   &:hover,
   &:focus {
-    background: var(--light-gray);
+    background: var(--separator-color);
   }
 
   &:focus {
