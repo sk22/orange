@@ -101,7 +101,7 @@ const EpisodeInfo = styled.span`
   `)}
 
   ${maxMobile(css`
-    margin-top: var(--text-block-margin);
+    margin-top: 0.5rem;
     margin-left: 1rem;
     margin-right: 1rem;
   `)}
