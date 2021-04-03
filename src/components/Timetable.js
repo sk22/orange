@@ -54,6 +54,7 @@ const StyledRawTimetable = styled.ul`
   margin: 0;
   list-style: none;
   padding: 0;
+  font-size: 0.9rem;
 `
 
 export const RawTimetable = props => (

@@ -125,7 +125,7 @@ const PlayButton = styled(RoundButton)`
 const NextUp = styled.div`
   position: relative;
   grid-area: next-up;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
   min-height: 1.5rem;
 
   margin-top: 1.5rem;
@@ -175,6 +175,8 @@ const NextUpLine = styled.div`
 
 const NextUpText = styled.div`
   padding: 1rem;
+  font-size: 0.9rem;
+
   ${minLaptop(
     css`
       padding-bottom: 0;
