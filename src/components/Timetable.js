@@ -3,8 +3,18 @@ import { maxMobile } from '../themes/media'
 import Card from './Card'
 import Link from './Link'
 
+const StyledRawTimetable = styled.ul`
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+`
+
 const StyledTimetable = styled(Card)`
   padding: 0;
+
+  & ${StyledRawTimetable} {
+    margin: 0;
+  }
 
   ${maxMobile(css`
     display: none;
@@ -49,12 +59,6 @@ const TimetableItem = styled.li`
         border-bottom-width: var(--primary-link-border-width);
       }
     `}
-`
-const StyledRawTimetable = styled.ul`
-  margin: 0;
-  list-style: none;
-  padding: 0;
-  font-size: 0.9rem;
 `
 
 export const RawTimetable = props => (
