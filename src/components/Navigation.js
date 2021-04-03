@@ -70,8 +70,7 @@ const NavLi = styled.li`
     `)}
   }
 
-  &:hover,
-  &:focus-within {
+  &:hover {
     font-weight: bold;
     color: white;
     position: relative;
@@ -106,7 +105,7 @@ const StyledSubUl = styled.ul`
   margin-left: 1rem;
 
   ${minLaptop(css`
-    ${NavUl}:hover &, ${NavUl}:focus-within & {
+    ${NavUl}:hover & {
       ${uncollapsedCss}
     }
   `)}
