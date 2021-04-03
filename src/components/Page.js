@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { minLaptop, minDesktop, sizes } from '../themes/media'
+import { minLaptop, minDesktop } from '../themes/media'
 
 const Page = styled.main`
   display: grid;
@@ -16,7 +16,6 @@ const Page = styled.main`
     'player';
 
   ${minLaptop(css`
-    /* width: ${_ => sizes.laptop}; */
     max-width: 900px;
     padding: 3rem;
     grid-template-columns: 1fr 4fr;
@@ -30,7 +29,6 @@ const Page = styled.main`
   `)}
 
   ${minDesktop(css`
-    /* width: ${_ => sizes.desktop}; */
     max-width: 1200px;
     padding: 5rem;
     grid-template-columns: 3fr 9fr;

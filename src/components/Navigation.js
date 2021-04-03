@@ -75,37 +75,7 @@ const NavLi = styled.li`
     font-weight: bold;
     color: white;
     position: relative;
-    background: transparent;
-  }
-
-  ${NavUl}:hover &::before,
-  ${NavUl}:focus-within &::before {
-    ${minLaptop(css`
-      transform: scaleY(1);
-    `)}
-    ${maxMobile(css`
-      transform: scaleX(1);
-    `)}
-  }
-
-  &:hover::before,
-  &:focus-within::before {
-    opacity: 1;
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    opacity: 0;
-    z-index: -1;
     background: var(--primary);
-    transition: 0.7s transform ease;
-    transform: scaleY(0);
-    transform-origin: top;
   }
 `
 
