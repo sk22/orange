@@ -121,6 +121,14 @@ const PlayButton = styled(RoundButton)`
   margin-right: 1rem;
   grid-area: play-button;
   align-self: center;
+
+  ${p => p.active && css`
+    &, &:focus, &:hover {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--box-shadow);
+    } 
+  `}
 `
 
 const NextUp = styled.div`
@@ -242,7 +250,7 @@ const Player = () => {
           />
         )}
       </audio>
-      <PlayButton onClick={togglePlayback}>
+      <PlayButton onClick={togglePlayback} active={playing}>
         <FontAwesomeIcon icon={playing ? faStop : faPlay} />
       </PlayButton>
       <OnAirInfo>
