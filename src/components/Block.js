@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components'
-import { laptop } from '../themes/media'
+import { minLaptop } from '../themes/media'
 
 export const block = css`
-  padding: 1.2rem;
+  padding: 1rem;
 
-  ${laptop(css`
-    padding: 1.5rem;
+  ${minLaptop(css`
+    padding: 1.3rem;
   `)}
 `
 

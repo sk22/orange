@@ -4,19 +4,20 @@ import styled, { css } from 'styled-components'
 import logoIcon from '../assets/logo-icon.png'
 import logoText from '../assets/logo-text.png'
 import { RoundButton } from './Button'
-import { laptop, desktop } from '../themes/media'
+import { minLaptop, minDesktop } from '../themes/media'
 
 const StyledHeader = styled.header`
+  grid-area: header;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 1.5rem;
 
-  ${laptop(css`
+  ${minLaptop(css`
     margin-bottom: 3rem;
   `)}
 
-  ${desktop(css`
+  ${minDesktop(css`
     margin-bottom: 3rem;
   `)}
 `
@@ -25,7 +26,7 @@ const StyledLogoIcon = styled.img`
   height: 3rem;
   filter: invert(var(--invert-colors));
 
-  ${desktop(css`
+  ${minDesktop(css`
     height: 3.5rem;
   `)}
 `
@@ -34,20 +35,20 @@ const StyledLogoText = styled.img`
   display: none;
   filter: invert(var(--invert-colors));
 
-  ${laptop(css`
+  ${minLaptop(css`
     display: initial;
     margin-left: 1.5rem;
     height: 3rem;
   `)}
 
-  ${desktop(css`
+  ${minDesktop(css`
     height: 3.5rem;
     margin-left: 2rem;
   `)}
 `
 
 const StyledMenuButton = styled(RoundButton)`
-  ${laptop(css`
+  ${minLaptop(css`
     display: none;
   `)}
   margin-left: auto;

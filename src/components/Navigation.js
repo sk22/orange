@@ -1,23 +1,31 @@
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
-import { laptop, mobile } from '../themes/media'
+import { minLaptop, maxMobile } from '../themes/media'
 import { card } from './Card'
 import Link from './Link'
 
 const StyledNav = styled.nav`
+  grid-area: navigation;
   ${card}
   padding: 0;
   overflow: hidden;
 
-  ${mobile(css`
+  ${maxMobile(css`
     height: auto;
     max-height: 0;
+    /* margin-bottom: -5rem; */
     opacity: 0;
     transform: scale(0.97);
     transition-duration: 0.4s;
     transition-timing-function: ease;
-    transition-property: transform, opacity, max-height;
+    transition-property: transform, opacity, max-height, margin-bottom;
+
+    ${p =>
+      !p.toggled &&
+      css`
+        margin-bottom: 0;
+      `}
 
     ${p =>
       p.toggled &&
@@ -39,7 +47,7 @@ const NavUl = styled.ul`
   padding: 0;
   font-size: 0.9rem;
 
-  ${laptop(css`
+  ${minLaptop(css`
     flex-direction: row;
     justify-content: space-between;
   `)}
@@ -53,11 +61,11 @@ const NavLi = styled.li`
   overflow: hidden;
 
   & + & {
-    ${mobile(css`
+    ${maxMobile(css`
       border-top: var(--separator-width) solid var(--separator-color);
     `)}
 
-    ${laptop(css`
+    ${minLaptop(css`
       border-left: var(--separator-width) solid var(--separator-color);
     `)}
   }
@@ -72,10 +80,10 @@ const NavLi = styled.li`
 
   ${NavUl}:hover &::before,
   ${NavUl}:focus-within &::before {
-    ${laptop(css`
+    ${minLaptop(css`
       transform: scaleY(1);
     `)}
-    ${mobile(css`
+    ${maxMobile(css`
       transform: scaleX(1);
     `)}
   }
@@ -127,13 +135,13 @@ const StyledSubUl = styled.ul`
   margin-bottom: calc(-1 * var(--nav-items-max-height));
   margin-left: 1rem;
 
-  ${laptop(css`
+  ${minLaptop(css`
     ${NavUl}:hover &, ${NavUl}:focus-within & {
       ${uncollapsedCss}
     }
   `)}
 
-  ${mobile(css`
+  ${maxMobile(css`
     ${NavLi}:focus-within & {
       ${uncollapsedCss}
     }
@@ -153,11 +161,11 @@ const NavLink = styled(Link)`
 
   &:hover,
   &:focus {
-    border-bottom-width: 0.1rem;
+    border-bottom-width: var(--primary-link-border-width);
   }
 
   ${NavLi}:hover &, ${NavLi}:focus-within & {
-    border-bottom-color: white;
+    border-bottom-color: var(--primary-link-border-color);
   }
 `
 
@@ -182,13 +190,13 @@ const NavLiHeader = styled.button`
   overflow: hidden;
   white-space: nowrap;
 
-  ${laptop(css`
+  ${minLaptop(css`
     ${NavLi}:hover &, ${NavLi}:focus-within & {
       ${noEllipsisCss}
     }
   `)}
 
-  ${mobile(css`
+  ${maxMobile(css`
     ${NavLi}:focus-within & {
       ${noEllipsisCss}
     }

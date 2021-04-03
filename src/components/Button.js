@@ -1,11 +1,19 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const RoundButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: var(--round-button-size);
+  height: var(--round-button-size);
+  
+  ${p =>
+    p.small &&
+    css`
+      width: var(--round-button-size-small);
+      height: var(--round-button-size-small);
+    `}
+
   border-radius: 100%;
   border: var(--separator-width) solid var(--separator-color);
   background: transparent;

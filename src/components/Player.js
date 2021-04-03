@@ -6,14 +6,11 @@ import { minDesktop, minLaptop, maxMobile } from '../themes/media'
 import { RoundButton } from './Button'
 import Card from './Card'
 import Link from './Link'
-import { Timetable } from './Schedule'
+import { RawTimetable } from './Timetable'
 
 const StyledPlayer = styled(Card)`
   padding: 0;
   grid-area: player;
-`
-
-const LiveInfo = styled.div`
   display: grid;
   grid-template-areas:
     'play-button on-air'
@@ -126,11 +123,12 @@ const PlayButton = styled(RoundButton)`
 `
 
 const NextUp = styled.div`
+  position: relative;
   grid-area: next-up;
   font-size: 0.9rem;
-  font-style: italic;
+  min-height: 1.5rem;
 
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   border-top: var(--separator-width) solid var(--separator-color);
 
   ${minDesktop(css`
@@ -140,30 +138,162 @@ const NextUp = styled.div`
   `)}
 `
 
+const CollapseButton = styled(RoundButton)`
+  margin: 0.8rem;
+  transition: 0.3s transform ease;
+  ${p =>
+    p.timetableVisible &&
+    css`
+      transform: rotate(180deg);
+    `}
+
+  ${minLaptop(
+    css`
+      display: none;
+    `
+  )}
+`
+
 const NextUpLine = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
+  padding: 0;
+
+  ${maxMobile(css`
+    min-height: 3rem;
+  `)}
+
+  ${minLaptop(css`
+    padding-bottom: 0;
+  `)}
+
+  ${minDesktop(css`
+    padding: 0;
+  `)}
+`
+
+const NextUpText = styled.div`
   padding: 1rem;
+  ${minLaptop(
+    css`
+      padding-bottom: 0;
+    `
+  )}
+  ${minDesktop(css`
+    padding: 0;
+  `)}
+  font-style: italic;
 `
 
-const NextUpText = styled.span`
-  flex: 1;
+const TimetableLinkText = styled.div`
+  /* padding: 1rem; */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 `
 
-const Collapsible = styled.div`
+const StyledCollapse = styled.div`
+  overflow: hidden;
+
   & > * {
-    transition-property: margin-bottom, transform;
+    transition-property: margin-${p => p.origin || 'bottom'}, transform;
     transition-duration: ${p => p.duration};
+    transition-delay: ${p => p.delay};
     transition-timing-function: ease;
-    transform-origin: bottom;
-    transform: scaleY(0);
-    margin-bottom: -100%;
+    transform-origin: ${p => p.origin || 'bottom'};
 
-    ${NextUp}:focus-within {
-      margin-bottom: 0;
-      transform: scaleY(1);
-    }
+    ${p =>
+      p.collapsed
+        ? css`
+            ${p =>
+              p.origin === 'top'
+                ? css`
+                    margin-top: calc(-1 * ${p => p.maxHeight});
+                  `
+                : css`
+                    margin-bottom: calc(-1 * ${p => p.maxHeight});
+                  `};
+
+            transform: scaleY(0);
+          `
+        : css`
+            ${p =>
+              p.origin === 'top'
+                ? css`
+                    margin-top: 0;
+                  `
+                : css`
+                    margin-bottom: 0;
+                  `}
+
+            transform: scaleY(1);
+          `}
   }
+`
+
+const Collapse = ({
+  duration,
+  delay,
+  maxHeight,
+  collapsed,
+  origin,
+  children,
+  ...props
+}) => (
+  <StyledCollapse
+    {...{ duration, delay, maxHeight, collapsed, origin, ...props }}
+  >
+    {children}
+  </StyledCollapse>
+)
+
+const MobileCollapse = styled(Collapse)`
+  ${minLaptop(css`
+    & > * {
+      ${p =>
+        p.fallbackCollapsed
+          ? css`
+              ${p =>
+                p.origin === 'top'
+                  ? css`
+                      margin-top: calc(-1 * ${p => p.maxHeight});
+                    `
+                  : css`
+                      margin-bottom: calc(-1 * ${p => p.maxHeight});
+                    `};
+
+              transform: scaleY(0);
+            `
+          : css`
+              ${p =>
+                p.origin === 'top'
+                  ? css`
+                      margin-top: 0;
+                    `
+                  : css`
+                      margin-bottom: 0;
+                    `}
+              transform: scaleY(1);
+            `}
+    }
+  `)}
+`
+
+const GridTextCollapse = styled(MobileCollapse)`
+  grid-area: 1 / 1 / 1 / 1;
+`
+
+const TimetableCollapse = styled(MobileCollapse)`
+  ${maxMobile(css`
+    ${p =>
+      !p.collapsed &&
+      css`
+        & > * {
+          /* cut off timetable's top margin */
+          margin-top: -0.5rem;
+        }
+      `}
+  `)}
 `
 
 const Player = () => {
@@ -196,42 +326,64 @@ const Player = () => {
           />
         )}
       </audio>
-      <LiveInfo>
-        <PlayButton onClick={togglePlayback}>
-          <FontAwesomeIcon icon={playing ? faStop : faPlay} />
-        </PlayButton>
-        <OnAirInfo>
-          <OnAirFont>On Air</OnAirFont>
-          <OnAirUntil>bis 18:00</OnAirUntil>
-        </OnAirInfo>
-        <ShowInfo>
-          <Link href="https://o94.at/programm/sendereihen/kulturschiene_fr">
-            Kulturschiene - Fr
-          </Link>
-        </ShowInfo>
-        <EpisodeInfo>
-          <Link href="https://o94.at/programm/sendung/id/1846911">
-            Brettspiele: Wer kennt den Räuber Hotzenplotz?
-          </Link>
-        </EpisodeInfo>
-        <NextUp>
-          {/* <Collapse
-            maxHeight="5rem"
+      <PlayButton onClick={togglePlayback}>
+        <FontAwesomeIcon icon={playing ? faStop : faPlay} />
+      </PlayButton>
+      <OnAirInfo>
+        <OnAirFont>On Air</OnAirFont>
+        <OnAirUntil>bis 18:00</OnAirUntil>
+      </OnAirInfo>
+      <ShowInfo>
+        <Link href="https://o94.at/programm/sendereihen/kulturschiene_fr">
+          Kulturschiene - Fr
+        </Link>
+      </ShowInfo>
+      <EpisodeInfo>
+        <Link href="https://o94.at/programm/sendung/id/1846911">
+          Brettspiele: Wer kennt den Räuber Hotzenplotz?
+        </Link>
+      </EpisodeInfo>
+      <NextUp>
+        <NextUpLine>
+          <GridTextCollapse
+            maxHeight="1rem"
             duration="0.5s"
+            origin="top"
             collapsed={timetableVisible}
-          > */}
-          <NextUpLine>
+            fallbackCollapsed={false}
+          >
             <NextUpText>ab 18:00: Radio UFF – Gewaltdynamiken</NextUpText>
-            <RoundButton small onClick={toggleTimetable}>
-              <FontAwesomeIcon icon={faAngleDown} />
-            </RoundButton>
-          </NextUpLine>
-          {/* </Collapse> */}
-          <Collapsible maxHeight="40rem" duration="0.5s">
-            <Timetable />
-          </Collapsible>
-        </NextUp>
-      </LiveInfo>
+          </GridTextCollapse>
+          <GridTextCollapse
+            maxHeight="1rem"
+            duration="0.5s"
+            origin="top"
+            collapsed={!timetableVisible}
+            fallbackCollapsed={true}
+          >
+            <TimetableLinkText>
+              <Link href="https://o94.at/programm/uebersicht?datum=2021-04-02">
+                Programm für 02.04.2021
+              </Link>
+            </TimetableLinkText>
+          </GridTextCollapse>
+          <CollapseButton
+            small
+            onClick={toggleTimetable}
+            timetableVisible={timetableVisible}
+          >
+            <FontAwesomeIcon icon={faAngleDown} />
+          </CollapseButton>
+        </NextUpLine>
+        <TimetableCollapse
+          maxHeight="40rem"
+          duration="0.7s"
+          collapsed={!timetableVisible}
+          fallbackCollapsed={true}
+        >
+          <RawTimetable />
+        </TimetableCollapse>
+      </NextUp>
     </StyledPlayer>
   )
 }

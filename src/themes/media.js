@@ -1,8 +1,8 @@
 import { css } from 'styled-components'
 
 export const sizes = {
-  maxMobile: '767px',
-  laptop: '768px',
+  maxMobile: '849px',
+  laptop: '850px',
   desktop: '1024px'
 }
 
@@ -18,6 +18,6 @@ export const minWidth = (size) => styles => css`
   }
 `
 
-export const mobile = maxWidth(sizes.maxMobile)
-export const laptop = minWidth(sizes.laptop)
-export const desktop = minWidth(sizes.desktop)
+export const maxMobile = maxWidth(sizes.maxMobile)
+export const minLaptop = minWidth(sizes.laptop)
+export const minDesktop = minWidth(sizes.desktop)

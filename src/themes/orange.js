@@ -11,6 +11,11 @@ const base = css`
     --border-width: 0.17rem;
     --separator-width: 0.07rem;
     --text-block-margin: 0.3rem;
+    --primary-link-border-color: white;
+    --primary-link-border-width: 0.1rem;
+    --layout-gap: 1rem;
+    --round-button-size: 3.5rem;
+    --round-button-size-small: 2.3rem;
   }
 
   * {
