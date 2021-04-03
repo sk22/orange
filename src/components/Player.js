@@ -103,6 +103,7 @@ const EpisodeInfo = styled.span`
   ${maxMobile(css`
     margin-top: var(--text-block-margin);
     margin-left: 1rem;
+    margin-right: 1rem;
   `)}
 
   &::before {
@@ -134,10 +135,8 @@ const PlayButton = styled(RoundButton)`
 const NextUp = styled.div`
   position: relative;
   grid-area: next-up;
-  /* font-size: 0.9rem; */
   min-height: 1.5rem;
-
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   border-top: var(--separator-width) solid var(--separator-color);
 
   ${minDesktop(css`
