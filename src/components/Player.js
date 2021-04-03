@@ -51,7 +51,6 @@ const OnAirFont = styled.span`
 const OnAirInfo = styled.span`
   grid-area: on-air;
   margin-right: 0.5rem;
-  margin-top: var(--text-block-margin);
   margin-bottom: var(--text-block-margin);
   align-self: end;
 
@@ -59,6 +58,12 @@ const OnAirInfo = styled.span`
     &::after {
       content: ':';
     }
+  `)}
+
+  ${minDesktop(css`
+    /* adding margin to keep text centered next to button as episode info
+       (2nd row) is smaller */
+    margin-top: 0.5rem;
   `)}
 `
 
@@ -123,13 +128,17 @@ const PlayButton = styled(RoundButton)`
   grid-area: play-button;
   align-self: center;
 
-  ${p => p.active && css`
-    &, &:focus, &:hover {
-      background: var(--primary);
-      color: white;
-      box-shadow: var(--box-shadow);
-    } 
-  `}
+  ${p =>
+    p.active &&
+    css`
+      &,
+      &:focus,
+      &:hover {
+        background: var(--primary);
+        color: white;
+        box-shadow: var(--box-shadow);
+      }
+    `}
 `
 
 const NextUp = styled.div`
