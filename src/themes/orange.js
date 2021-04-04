@@ -1,5 +1,6 @@
 import { css } from 'styled-components'
 import arvo from '../assets/arvo.woff2'
+import { minLaptop } from './media'
 
 const base = css`
   :root {
@@ -9,6 +10,7 @@ const base = css`
     --nav-mobile-max-height: 18rem;
     --nav-items-max-height: 30rem;
     --border-width: 0.17rem;
+    --border-radius: 0.5rem;
     --separator-width: 0.07rem;
     --text-block-margin: 0.3rem;
     --primary-link-border-color: white;
@@ -19,6 +21,11 @@ const base = css`
     --round-button-size-small: 2.3rem;
     --box-shadow: 0 3px 5px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.12);
     --box-shadow-preserve-space: 1.5rem;
+
+    --content-padding: 1rem;
+    ${minLaptop(css`
+      --content-padding: 1.3rem;
+    `)}
   }
 
   * {

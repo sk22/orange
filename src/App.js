@@ -14,13 +14,19 @@ import Player from './components/Player'
 import Timetable from './components/Timetable'
 import { minDesktop, minLaptop } from './themes/media'
 import orange from './themes/orange'
+import ctw from './assets/ctw2021_banner_web.png'
 
 const GlobalStyle = createGlobalStyle`
   ${p => p.theme.global}
 `
 
 const PageContent = styled.article`
-  ${block}
+  margin-bottom: var(--layout-gap);
+
+  & > img {
+    width: 100%;
+    border-radius: var(--border-radius);
+  }
 `
 
 const PageNavCollapse = styled(Collapse)`
@@ -88,7 +94,12 @@ const App = () => {
         </PageNavCollapse>
         <PagePlayer />
         <PageTimetable />
-        <PageContent>lorem ipsum etc</PageContent>
+        <PageContent>
+          <img
+            src={ctw}
+            alt="Claim the Waves: Save the Date: Feministische Radiotage 8.-11. Juli 2021"
+          />
+        </PageContent>
         <LinksNoMobile />
       </Page>
     </ThemeProvider>

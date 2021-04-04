@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { block } from './Block'
 
 export const card = css`
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   background: var(--background);
   border: var(--separator-width) solid var(--card-border-color);
   border-bottom: var(--border-width) solid var(--primary);
