@@ -258,7 +258,7 @@ const Player = () => {
           />
         )}
       </audio>
-      <PlayButton onClick={togglePlayback} active={playing}>
+      <PlayButton onClick={togglePlayback} active={playing} big>
         <FontAwesomeIcon icon={playing ? faStop : faPlay} />
       </PlayButton>
       <OnAirInfo>
@@ -278,18 +278,18 @@ const Player = () => {
       <NextUp>
         <NextUpLine>
           <GridTextCollapse
-            maxHeight="1rem"
-            duration="0.5s"
-            origin="top"
+            maxSize="1rem"
+            transitionDuration="0.5s"
+            transformOrigin="top"
             collapsed={timetableVisible}
             fallbackCollapsed={false}
           >
             <NextUpText>ab 18:00: Radio UFF – Gewaltdynamiken</NextUpText>
           </GridTextCollapse>
           <GridTextCollapse
-            maxHeight="1rem"
-            duration="0.5s"
-            origin="top"
+            maxSize="1rem"
+            transitionDuration="0.5s"
+            transformOrigin="top"
             collapsed={!timetableVisible}
             fallbackCollapsed={true}
           >
@@ -308,8 +308,8 @@ const Player = () => {
           </CollapseButton>
         </NextUpLine>
         <TimetableCollapse
-          maxHeight="40rem"
-          duration="0.7s"
+          maxSize="40rem"
+          transitionDuration="0.7s"
           collapsed={!timetableVisible}
           fallbackCollapsed={true}
         >

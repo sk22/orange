@@ -6,15 +6,12 @@ import Link from './Link'
 const StyledRawTimetable = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
   font-size: 0.9rem;
 `
 
 const StyledTimetable = styled(Card)`
   padding: 0;
-
-  & ${StyledRawTimetable} {
-    margin: 0;
-  }
 
   ${maxMobile(css`
     display: none;

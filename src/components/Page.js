@@ -8,7 +8,6 @@ const Page = styled.main`
   margin: 0 auto;
   column-gap: var(--layout-gap);
 
-  grid-auto-flow: row;
   grid-template-columns: 1fr;
   grid-template-areas:
     'header'
@@ -24,7 +23,7 @@ const Page = styled.main`
       'navigation navigation'
       'player player'
       'schedule content'
-      'infos content'
+      'links content'
       'footer footer';
   `)}
 

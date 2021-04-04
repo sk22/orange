@@ -12,16 +12,16 @@ const StyledNav = styled.nav`
   overflow: hidden;
 
   ${maxMobile(css`
-    height: auto;
+    /* height: auto;
     max-height: 0;
-    /* margin-bottom: -5rem; */
+    
     opacity: 0;
     transform: scale(0.97);
     transition-duration: 0.4s;
     transition-timing-function: ease;
-    transition-property: transform, opacity, max-height, margin-bottom;
+    transition-property: transform, opacity, max-height, margin-bottom; */
 
-    ${p =>
+    /* ${p =>
       !p.toggled &&
       css`
         margin-bottom: 0;
@@ -33,7 +33,7 @@ const StyledNav = styled.nav`
         max-height: var(--nav-mobile-max-height);
         opacity: 1;
         transform: scale(1);
-      `}
+      `} */
   `)}
 `
 
@@ -179,8 +179,8 @@ const NavItem = props => (
   </SubLi>
 )
 
-const Navigation = ({ toggled }) => (
-  <StyledNav toggled={toggled}>
+const Navigation = props => (
+  <StyledNav {...props}>
     <NavUl>
       <NavLi>
         <NavLiHeader>Programm</NavLiHeader>

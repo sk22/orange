@@ -5,6 +5,8 @@ import logoIcon from '../assets/logo-icon.png'
 import logoText from '../assets/logo-text.png'
 import { RoundButton } from './Button'
 import { minLaptop, minDesktop } from '../themes/media'
+import Links from './Links'
+import { MobileCollapse } from './Collapse'
 
 const StyledHeader = styled.header`
   grid-area: header;
@@ -48,18 +50,18 @@ const StyledLogoText = styled.img`
 `
 
 const StyledMenuButton = styled(RoundButton)`
+  margin-left: auto;
+
   ${minLaptop(css`
     display: none;
   `)}
-  margin-left: auto;
 `
 
 const Header = ({ onToggleNav, navToggled }) => (
   <StyledHeader>
     <StyledLogoIcon src={logoIcon} />
     <StyledLogoText src={logoText} />
-
-    <StyledMenuButton onClick={onToggleNav}>
+    <StyledMenuButton onClick={onToggleNav} big>
       <FontAwesomeIcon icon={navToggled ? faTimes : faBars} />
     </StyledMenuButton>
   </StyledHeader>
