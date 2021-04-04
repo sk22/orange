@@ -1,5 +1,9 @@
 import { useState } from 'react'
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import styled, {
+  createGlobalStyle,
+  css,
+  ThemeProvider
+} from 'styled-components'
 import { block } from './components/Block'
 import Collapse, { uncollapseCss } from './components/Collapse'
 import Header from './components/Header'
@@ -15,18 +19,40 @@ const GlobalStyle = createGlobalStyle`
   ${p => p.theme.global}
 `
 
-const Content = styled.article`
+const PageContent = styled.article`
   ${block}
 `
 
-const NavCollapse = styled(Collapse)`
+const PageNavCollapse = styled(Collapse)`
   grid-area: navigation;
-  
+  position: relative;
+  z-index: 0;
+
+  /* ensuring padding for the drop shadow not being cut off */
+  padding: var(--box-shadow-preserve-space);
+  margin: calc(-1 * var(--box-shadow-preserve-space));
+
   & ${LinksOnlyMobile} {
     margin-bottom: 1rem;
   }
 
   ${minLaptop(uncollapseCss)}
+`
+
+const PagePlayer = styled(Player)`
+  grid-area: player;
+  position: relative;
+  z-index: 1;
+`
+
+const navCollapsedCss = css`
+  transform: scale(0.97);
+  opacity: 0;
+`
+
+const navUncollapsedCss = css`
+  transform: scale(1);
+  opacity: 1;
 `
 
 const App = () => {
@@ -40,21 +66,21 @@ const App = () => {
           onToggleNav={() => setNavToggled(!navToggled)}
           navToggled={navToggled}
         />
-        <NavCollapse
+        <PageNavCollapse
           collapsed={!navToggled}
           maxSize="var(--nav-mobile-max-height)"
           transitionDuration="0.5s"
           transformOrigin="bottom"
-          collapseCss="transform: scale(0.97); opacity: 0"
-          uncollapseCss="transform: scale(1); opacity: 1"
-          transitionProperty="opacity"
+          transitionProperty="opacity, max-height"
+          collapsedCss={navCollapsedCss}
+          uncollapsedCss={navUncollapsedCss}
         >
           <Navigation />
           <LinksOnlyMobile />
-        </NavCollapse>
-        <Player />
+        </PageNavCollapse>
+        <PagePlayer />
         <Timetable />
-        <Content>lorem ipsum etc</Content>
+        <PageContent>lorem ipsum etc</PageContent>
         <LinksNoMobile />
       </Page>
     </ThemeProvider>

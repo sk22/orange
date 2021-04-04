@@ -28,6 +28,13 @@ const NavUl = styled.ul`
   `)}
 `
 
+const highlightColumnCss = css`
+  font-weight: bold;
+  color: white;
+  position: relative;
+  background: var(--primary);
+`
+
 const NavLi = styled.li`
   flex: 1;
   display: flex;
@@ -46,12 +53,18 @@ const NavLi = styled.li`
   }
 
   /* make sure only one column is highlighted */
-  &:hover, ${NavUl}:not(:hover) &:focus-within {
-    font-weight: bold;
-    color: white;
-    position: relative;
-    background: var(--primary);
-  }
+  ${minLaptop(css`
+    &:hover,
+    ${NavUl}:not(:hover) &:focus-within {
+      ${highlightColumnCss}
+    }
+  `)}
+
+  ${maxMobile(css`
+    &:focus-within {
+      ${highlightColumnCss}
+    }
+  `)}
 `
 
 const uncollapseCss = css`
@@ -65,7 +78,7 @@ const StyledSubUl = styled.ul`
   display: flex;
   flex: 1;
   padding: 1rem;
-  padding-top: 0rem;
+  padding-top: 0;
   letter-spacing: initial;
   text-transform: initial;
   list-style: none;

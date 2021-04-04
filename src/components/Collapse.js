@@ -17,7 +17,11 @@ export const uncollapseCss = css`
 `
 
 const StyledCollapse = styled.div`
-  overflow: hidden;
+  ${p =>
+    p.overflowHidden &&
+    css`
+      overflow: hidden;
+    `}
 
   & > * {
     transition-property: ${p =>
@@ -46,6 +50,7 @@ const Collapse = ({
   transitionProperty,
   collapseCss = null,
   uncollapseCss = null,
+  overflowHidden = true,
   key,
   children,
   ...props
@@ -61,6 +66,7 @@ const Collapse = ({
         transitionProperty,
         collapseCss,
         uncollapseCss,
+        overflowHidden,
         key,
         ...props
       }}

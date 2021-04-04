@@ -6,7 +6,7 @@ const base = css`
     --primary: #23c332;
     --nav-header-padding: 1rem;
     --nav-header-font-size: 1rem;
-    --nav-mobile-max-height: 20rem;
+    --nav-mobile-max-height: 18rem;
     --nav-items-max-height: 30rem;
     --border-width: 0.17rem;
     --separator-width: 0.07rem;
@@ -18,6 +18,7 @@ const base = css`
     --round-button-size-big: 3.5rem;
     --round-button-size-small: 2.3rem;
     --box-shadow: 0 3px 5px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.12);
+    --box-shadow-preserve-space: 1.5rem;
   }
 
   * {

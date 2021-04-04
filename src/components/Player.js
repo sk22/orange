@@ -11,7 +11,6 @@ import { RawTimetable } from './Timetable'
 
 const StyledPlayer = styled(Card)`
   padding: 0;
-  grid-area: player;
   display: grid;
   grid-template-areas:
     'play-button on-air'
@@ -164,11 +163,9 @@ const CollapseButton = styled(RoundButton)`
       transform: rotate(180deg);
     `}
 
-  ${minLaptop(
-    css`
-      display: none;
-    `
-  )}
+  ${minLaptop(css`
+    display: none;
+  `)}
 `
 
 const NextUpLine = styled.div`
@@ -194,11 +191,10 @@ const NextUpText = styled.div`
   padding: 1rem;
   font-size: 0.9rem;
 
-  ${minLaptop(
-    css`
-      padding-bottom: 0;
-    `
-  )}
+  ${minLaptop(css`
+    padding-bottom: 0;
+  `)}
+
   ${minDesktop(css`
     padding: 0;
   `)}
@@ -221,7 +217,7 @@ const TimetableCollapse = styled(Collapse)`
   ${minLaptop(collapseCss)}
 `
 
-const Player = () => {
+const Player = props => {
   const audioRef = createRef()
   const [playing, setPlaying] = useState(false)
   const [timetableVisible, setTimetableVisible] = useState(false)
@@ -242,7 +238,7 @@ const Player = () => {
   }
 
   return (
-    <StyledPlayer noPadding>
+    <StyledPlayer {...props}>
       <audio ref={audioRef}>
         {playing && (
           <source
