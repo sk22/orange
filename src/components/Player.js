@@ -125,7 +125,6 @@ const PlayButton = styled(RoundButton)`
   margin-left: 1rem;
   margin-right: 1rem;
   grid-area: play-button;
-  align-self: center;
 
   ${p =>
     p.active &&
