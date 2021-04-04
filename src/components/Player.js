@@ -23,7 +23,6 @@ const StyledPlayer = styled(Card)`
   grid-template-rows: auto;
 
   ${minLaptop(css`
-    padding-bottom: 1rem;
     grid-template-areas:
       'play-button on-air show-info'
       'play-button episode-info episode-info'
@@ -32,6 +31,7 @@ const StyledPlayer = styled(Card)`
   `)}
 
   ${minDesktop(css`
+    padding-bottom: 1rem;
     grid-template-areas:
       'play-button on-air show-info episode-info'
       'play-button next-up next-up next-up';
@@ -163,7 +163,7 @@ const CollapseButton = styled(RoundButton)`
       transform: rotate(180deg);
     `}
 
-  ${minLaptop(css`
+  ${minDesktop(css`
     display: none;
   `)}
 `
@@ -173,16 +173,10 @@ const NextUpLine = styled.div`
   grid-template-columns: 1fr auto;
   align-items: center;
   padding: 0;
-
-  ${maxMobile(css`
-    min-height: 3rem;
-  `)}
-
-  ${minLaptop(css`
-    padding-bottom: 0;
-  `)}
+  min-height: 3rem;
 
   ${minDesktop(css`
+    min-height: 0;
     padding: 0;
   `)}
 `
@@ -190,15 +184,11 @@ const NextUpLine = styled.div`
 const NextUpText = styled.div`
   padding: 1rem;
   font-size: 0.9rem;
-
-  ${minLaptop(css`
-    padding-bottom: 0;
-  `)}
+  font-style: italic;
 
   ${minDesktop(css`
     padding: 0;
   `)}
-  font-style: italic;
 `
 
 const TimetableLinkText = styled.div`
@@ -209,12 +199,12 @@ const TimetableLinkText = styled.div`
 const GridTextCollapse = styled(Collapse)`
   grid-area: 1 / 1 / 1 / 1;
 
-  ${p => p.key === 'next-up-text' && minLaptop(uncollapseCss)}
-  ${p => p.key === 'timetable-link-text' && minLaptop(collapseCss)}
+  ${p => p.identifier === 'NextUpText' && minDesktop(uncollapseCss)}
+  ${p => p.identifier === 'TimetableLinkText' && minDesktop(collapseCss)}
 `
 
 const TimetableCollapse = styled(Collapse)`
-  ${minLaptop(collapseCss)}
+  ${minDesktop(collapseCss)}
 `
 
 const Player = props => {
@@ -271,6 +261,7 @@ const Player = props => {
             transitionDuration="0.5s"
             transformOrigin="top"
             collapsed={timetableVisible}
+            identifier="NextUpText"
           >
             <NextUpText>ab 18:00: Radio UFF – Gewaltdynamiken</NextUpText>
           </GridTextCollapse>
@@ -279,6 +270,7 @@ const Player = props => {
             transitionDuration="0.5s"
             transformOrigin="top"
             collapsed={!timetableVisible}
+            identifier="TimetableLinkText"
           >
             <TimetableLinkText>
               <Link href="https://o94.at/programm/uebersicht?datum=2021-04-02">

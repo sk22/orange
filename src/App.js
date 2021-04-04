@@ -12,7 +12,7 @@ import Navigation from './components/Navigation'
 import Page from './components/Page'
 import Player from './components/Player'
 import Timetable from './components/Timetable'
-import { minLaptop } from './themes/media'
+import { minDesktop, minLaptop } from './themes/media'
 import orange from './themes/orange'
 
 const GlobalStyle = createGlobalStyle`
@@ -55,6 +55,14 @@ const navUncollapsedCss = css`
   opacity: 1;
 `
 
+const PageTimetable = styled(Timetable)`
+  display: none;
+
+  ${minDesktop(css`
+    display: initial;
+  `)}
+`
+
 const App = () => {
   const [navToggled, setNavToggled] = useState(false)
 
@@ -79,7 +87,7 @@ const App = () => {
           <LinksOnlyMobile />
         </PageNavCollapse>
         <PagePlayer />
-        <Timetable />
+        <PageTimetable />
         <PageContent>lorem ipsum etc</PageContent>
         <LinksNoMobile />
       </Page>

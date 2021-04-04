@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { maxMobile } from '../themes/media'
 import Card from './Card'
 import Link from './Link'
 
@@ -12,10 +11,6 @@ const StyledRawTimetable = styled.ul`
 
 const StyledTimetable = styled(Card)`
   padding: 0;
-
-  ${maxMobile(css`
-    display: none;
-  `)}
 `
 
 const Time = styled.span`
@@ -107,8 +102,8 @@ export const RawTimetable = props => (
   </StyledRawTimetable>
 )
 
-const Timetable = () => (
-  <StyledTimetable>
+const Timetable = props => (
+  <StyledTimetable {...props}>
     <RawTimetable />
   </StyledTimetable>
 )
