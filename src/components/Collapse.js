@@ -1,34 +1,19 @@
 import styled, { css } from 'styled-components'
-import { minLaptop } from '../themes/media'
 
-const collapsed = css`
-  ${p =>
-    p.transformOrigin
-      ? css`
-          margin-${p.transformOrigin}: calc(-1 * ${p => p.maxSize});
-        `
-      : css`
-          margin-bottom: calc(-1 * ${p => p.maxSize});
-        `};
-
-  transform: scaleY(0);
-
-  ${p => p.collapsedCss}
+export const collapseCss = css`
+  & > * {
+    transform: scaleY(0);
+    ${p => `margin-${p.transformOrigin || 'bottom'}: calc(-1 * ${p.maxSize})`};
+    ${p => p.collapseCss}
+  }
 `
 
-const uncollapsed = css`
-  ${p =>
-    p.transformOrigin
-      ? css`
-          margin-${p.transformOrigin}: 0;
-        `
-      : css`
-          margin-bottom: 0;
-        `}
-
-  transform: scaleY(1);
-
-  ${p => p.uncollapsedCss}
+export const uncollapseCss = css`
+  & > * {
+    transform: scaleY(1);
+    ${p => `margin-${p.transformOrigin || 'bottom'}: 0`};
+    ${p => p.uncollapseCss}
+  }
 `
 
 const StyledCollapse = styled.div`
@@ -47,9 +32,9 @@ const StyledCollapse = styled.div`
     transition-delay: ${p => p.transitionDelay};
     transform-origin: ${p => p.transformOrigin || 'bottom'};
     transition-timing-function: ease;
-
-    ${p => (p.collapsed ? collapsed : uncollapsed)}
   }
+
+  ${p => (p.collapsed ? collapseCss : uncollapseCss)}
 `
 
 const Collapse = ({
@@ -59,37 +44,30 @@ const Collapse = ({
   transitionDelay = '0',
   transformOrigin = 'bottom',
   transitionProperty,
-  collapsedCss = null,
-  uncollapsedCss = null,
+  collapseCss = null,
+  uncollapseCss = null,
+  key,
   children,
   ...props
-}) => (
-  <StyledCollapse
-    {...{
-      collapsed,
-      maxSize,
-      transitionDuration,
-      transitionDelay,
-      transformOrigin,
-      transitionProperty,
-      collapsedCss,
-      uncollapsedCss,
-      ...props
-    }}
-  >
-    <div>{children}</div>
-  </StyledCollapse>
-)
-
-export const MobileCollapse = styled(Collapse)`
-  ${minLaptop(css`
-    & > * {
-      ${p =>
-        p.fallbackCollapsed === undefined || p.fallbackCollapsed === true
-          ? collapsed
-          : uncollapsed}
-    }
-  `)}
-`
+}) => {
+  return (
+    <StyledCollapse
+      {...{
+        collapsed,
+        maxSize,
+        transitionDuration,
+        transitionDelay,
+        transformOrigin,
+        transitionProperty,
+        collapseCss,
+        uncollapseCss,
+        key,
+        ...props
+      }}
+    >
+      <div>{children}</div>
+    </StyledCollapse>
+  )
+}
 
 export default Collapse

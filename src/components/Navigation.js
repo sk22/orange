@@ -54,7 +54,7 @@ const NavLi = styled.li`
   }
 `
 
-const uncollapsedCss = css`
+const uncollapseCss = css`
   margin-bottom: 0;
   transform: scaleY(1);
   opacity: 1;
@@ -82,13 +82,13 @@ const StyledSubUl = styled.ul`
 
   ${minLaptop(css`
     ${NavUl}:hover &, ${NavUl}:focus-within & {
-      ${uncollapsedCss}
+      ${uncollapseCss}
     }
   `)}
 
   ${maxMobile(css`
     ${NavLi}:focus-within & {
-      ${uncollapsedCss}
+      ${uncollapseCss}
     }
   `)}
 `

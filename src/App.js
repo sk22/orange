@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { block } from './components/Block'
-import { MobileCollapse } from './components/Collapse'
+import Collapse, { uncollapseCss } from './components/Collapse'
 import Header from './components/Header'
 import { LinksNoMobile, LinksOnlyMobile } from './components/Links'
 import Navigation from './components/Navigation'
 import Page from './components/Page'
 import Player from './components/Player'
 import Timetable from './components/Timetable'
+import { minLaptop } from './themes/media'
 import orange from './themes/orange'
 
 const GlobalStyle = createGlobalStyle`
@@ -18,12 +19,14 @@ const Content = styled.article`
   ${block}
 `
 
-const NavCollapse = styled(MobileCollapse)`
+const NavCollapse = styled(Collapse)`
   grid-area: navigation;
   
   & ${LinksOnlyMobile} {
     margin-bottom: 1rem;
   }
+
+  ${minLaptop(uncollapseCss)}
 `
 
 const App = () => {
@@ -39,12 +42,11 @@ const App = () => {
         />
         <NavCollapse
           collapsed={!navToggled}
-          fallbackCollapsed={false}
           maxSize="var(--nav-mobile-max-height)"
           transitionDuration="0.5s"
           transformOrigin="bottom"
-          collapsedCss="transform: scale(0.97); opacity: 0"
-          uncollapsedCss="transform: scale(1); opacity: 1"
+          collapseCss="transform: scale(0.97); opacity: 0"
+          uncollapseCss="transform: scale(1); opacity: 1"
           transitionProperty="opacity"
         >
           <Navigation />

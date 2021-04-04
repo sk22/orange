@@ -17,7 +17,12 @@ const Page = styled.main`
   ${minLaptop(css`
     max-width: 900px;
     padding: 3rem;
-    grid-template-columns: 1fr 4fr;
+  `)}
+
+  ${minDesktop(css`
+    max-width: 1200px;
+    padding: 5rem;
+    grid-template-columns: 3fr 9fr;
     grid-template-areas:
       'header header'
       'navigation navigation'
@@ -25,12 +30,6 @@ const Page = styled.main`
       'schedule content'
       'links content'
       'footer footer';
-  `)}
-
-  ${minDesktop(css`
-    max-width: 1200px;
-    padding: 5rem;
-    grid-template-columns: 3fr 9fr;
   `)}
 `
 

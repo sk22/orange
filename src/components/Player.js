@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import { minDesktop, minLaptop, maxMobile } from '../themes/media'
 import { RoundButton } from './Button'
 import Card from './Card'
-import { MobileCollapse } from './Collapse'
+import Collapse, { collapseCss, uncollapseCss } from './Collapse'
 import Link from './Link'
 import { RawTimetable } from './Timetable'
 
@@ -206,26 +206,19 @@ const NextUpText = styled.div`
 `
 
 const TimetableLinkText = styled.div`
-  /* padding: 1rem; */
   padding: 0.5rem 1rem;
   font-size: 1rem;
 `
 
-const GridTextCollapse = styled(MobileCollapse)`
+const GridTextCollapse = styled(Collapse)`
   grid-area: 1 / 1 / 1 / 1;
+
+  ${p => p.key === 'next-up-text' && minLaptop(uncollapseCss)}
+  ${p => p.key === 'timetable-link-text' && minLaptop(collapseCss)}
 `
 
-const TimetableCollapse = styled(MobileCollapse)`
-  ${maxMobile(css`
-    ${p =>
-      !p.collapsed &&
-      css`
-        & > * {
-          /* cut off timetable's top margin */
-          margin-top: -0.5rem;
-        }
-      `}
-  `)}
+const TimetableCollapse = styled(Collapse)`
+  ${minLaptop(collapseCss)}
 `
 
 const Player = () => {
@@ -282,7 +275,6 @@ const Player = () => {
             transitionDuration="0.5s"
             transformOrigin="top"
             collapsed={timetableVisible}
-            fallbackCollapsed={false}
           >
             <NextUpText>ab 18:00: Radio UFF – Gewaltdynamiken</NextUpText>
           </GridTextCollapse>
@@ -291,7 +283,6 @@ const Player = () => {
             transitionDuration="0.5s"
             transformOrigin="top"
             collapsed={!timetableVisible}
-            fallbackCollapsed={true}
           >
             <TimetableLinkText>
               <Link href="https://o94.at/programm/uebersicht?datum=2021-04-02">
@@ -311,7 +302,6 @@ const Player = () => {
           maxSize="40rem"
           transitionDuration="0.7s"
           collapsed={!timetableVisible}
-          fallbackCollapsed={true}
         >
           <RawTimetable />
         </TimetableCollapse>
