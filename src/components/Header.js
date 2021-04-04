@@ -5,8 +5,6 @@ import logoIcon from '../assets/logo-icon.png'
 import logoText from '../assets/logo-text.png'
 import { RoundButton } from './Button'
 import { minLaptop, minDesktop } from '../themes/media'
-import Links from './Links'
-import { MobileCollapse } from './Collapse'
 
 const StyledHeader = styled.header`
   grid-area: header;
