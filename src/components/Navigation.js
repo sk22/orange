@@ -10,31 +10,6 @@ const StyledNav = styled.nav`
   ${card}
   padding: 0;
   overflow: hidden;
-
-  ${maxMobile(css`
-    /* height: auto;
-    max-height: 0;
-    
-    opacity: 0;
-    transform: scale(0.97);
-    transition-duration: 0.4s;
-    transition-timing-function: ease;
-    transition-property: transform, opacity, max-height, margin-bottom; */
-
-    /* ${p =>
-      !p.toggled &&
-      css`
-        margin-bottom: 0;
-      `}
-
-    ${p =>
-      p.toggled &&
-      css`
-        max-height: var(--nav-mobile-max-height);
-        opacity: 1;
-        transform: scale(1);
-      `} */
-  `)}
 `
 
 const NavUl = styled.ul`
@@ -70,7 +45,8 @@ const NavLi = styled.li`
     `)}
   }
 
-  &:hover {
+  /* make sure only one column is highlighted */
+  &:hover, ${NavUl}:not(:hover) &:focus-within {
     font-weight: bold;
     color: white;
     position: relative;
@@ -105,7 +81,7 @@ const StyledSubUl = styled.ul`
   margin-left: 1rem;
 
   ${minLaptop(css`
-    ${NavUl}:hover & {
+    ${NavUl}:hover &, ${NavUl}:focus-within & {
       ${uncollapsedCss}
     }
   `)}
