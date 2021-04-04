@@ -50,12 +50,12 @@ const PagePlayer = styled(Player)`
   z-index: 1;
 `
 
-const navCollapsedCss = css`
+const navCollapseCss = css`
   transform: scale(0.97);
   opacity: 0;
 `
 
-const navUncollapsedCss = css`
+const navUncollapseCss = css`
   transform: scale(1);
   opacity: 1;
 `
@@ -85,8 +85,8 @@ const App = () => {
           transitionDuration="0.5s"
           transformOrigin="bottom"
           transitionProperty="opacity, max-height"
-          collapsedCss={navCollapsedCss}
-          uncollapsedCss={navUncollapsedCss}
+          collapseCss={navCollapseCss}
+          uncollapseCss={navUncollapseCss}
         >
           <Navigation />
           <LinksOnlyMobile />
