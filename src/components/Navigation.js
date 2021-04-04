@@ -91,9 +91,11 @@ const StyledSubUl = styled.ul`
   display: flex;
   flex-direction: column;
   margin-bottom: calc(-1 * var(--nav-items-max-height));
-  margin-left: 1rem;
+  margin-left: 0;
 
   ${minLaptop(css`
+    /* estimate of fontawesome angle-right width (list bullet) */
+    margin-left: 1.13rem;
     ${NavUl}:hover &, ${NavUl}:focus-within & {
       ${uncollapseCss}
     }
@@ -112,15 +114,39 @@ const SubLi = styled.li`
   & + & {
     margin-top: 0.2rem;
   }
+
+  ${maxMobile(css`
+    & + & {
+      margin-top: 0.4rem;
+    }
+  `)}
+`
+
+const NoMobileIcon = styled(FontAwesomeIcon)`
+  ${maxMobile(
+    css`
+      display: none;
+    `
+  )}
 `
 
 const NavLink = styled(Link)`
   transition: none;
+  border-bottom-color: var(--separator-width) solid var(--link-underline-color);
 
-  &:hover,
-  &:focus {
-    border-bottom-width: var(--primary-link-border-width);
-  }
+  ${maxMobile(css`
+    padding: 0.6rem;
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.2rem;
+  `)}
+
+  ${minLaptop(css`
+    &:hover,
+    &:focus {
+      border-bottom-width: var(--primary-link-border-width);
+    }
+  `)}
 
   ${NavLi}:hover &, ${NavLi}:focus-within & {
     border-bottom-color: var(--primary-link-border-color);
@@ -163,7 +189,7 @@ const NavLiHeader = styled.button`
 
 const NavItem = props => (
   <SubLi>
-    <FontAwesomeIcon icon={faAngleRight} listItem />
+    <NoMobileIcon icon={faAngleRight} listItem />
     <NavLink {...props} />
   </SubLi>
 )

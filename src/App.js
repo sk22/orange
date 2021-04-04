@@ -4,7 +4,6 @@ import styled, {
   css,
   ThemeProvider
 } from 'styled-components'
-import { block } from './components/Block'
 import Collapse, { uncollapseCss } from './components/Collapse'
 import Header from './components/Header'
 import { LinksNoMobile, LinksOnlyMobile } from './components/Links'

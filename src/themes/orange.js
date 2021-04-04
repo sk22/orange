@@ -8,7 +8,7 @@ const base = css`
     --nav-header-padding: 1rem;
     --nav-header-font-size: 1rem;
     --nav-mobile-max-height: 18rem;
-    --nav-items-max-height: 30rem;
+    --nav-items-max-height: 35rem;
     --border-width: 0.17rem;
     --border-radius: 0.5rem;
     --separator-width: 0.07rem;
