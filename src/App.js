@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled, {
   createGlobalStyle,
   css,
@@ -14,6 +14,7 @@ import Timetable from './components/Timetable'
 import { minDesktop, minLaptop } from './themes/media'
 import orange from './themes/orange'
 import ctw from './assets/ctw2021_banner_web.png'
+import { progInfo } from './service/api'
 
 const GlobalStyle = createGlobalStyle`
   ${p => p.theme.global}
@@ -68,8 +69,27 @@ const PageTimetable = styled(Timetable)`
   `)}
 `
 
+const createFetcher = (apiCall, setter) => async () => {
+  const data = await apiCall()
+  setter(data)
+  console.debug(apiCall, data)
+}
+
 const App = () => {
   const [navToggled, setNavToggled] = useState(false)
+  const [currentProgram, setCurrentProgram] = useState(null)
+  const [dailyProgram, setDailyProgram] = useState(null)
+
+  useEffect(() => {
+    const fetcher = createFetcher(progInfo.current, setCurrentProgram)
+    const interval = setInterval(fetcher, 1000 * 10)
+    fetcher()
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    createFetcher(progInfo.daily, setDailyProgram)()
+  }, [])
 
   return (
     <ThemeProvider theme={orange}>
@@ -91,8 +111,14 @@ const App = () => {
           <Navigation />
           <LinksOnlyMobile />
         </PageNavCollapse>
-        <PagePlayer />
-        <PageTimetable />
+        <PagePlayer
+          currentProgram={currentProgram}
+          dailyProgram={dailyProgram}
+        />
+        <PageTimetable
+          currentProgram={currentProgram}
+          dailyProgram={dailyProgram}
+        />
         <PageContent>
           <img
             src={ctw}

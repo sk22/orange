@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components'
+import { getTimeFromDateString } from '../service/utils'
 import Card from './Card'
 import Link from './Link'
+import Loading from './Loading'
 
 const StyledRawTimetable = styled.ul`
   list-style: none;
@@ -53,58 +55,67 @@ const TimetableItem = styled.li`
     `}
 `
 
-export const RawTimetable = props => (
-  <StyledRawTimetable {...props}>
-    <TimetableItem>
-      <Time>17:00</Time>
-      <Name title="Alternativer Nachrichtendienst">ANDI</Name>
-      <EpisodeDescription>ANDI 158</EpisodeDescription>
-    </TimetableItem>
-    <TimetableItem current>
-      <Time>17:30</Time>
-      <Name>
-        <Link href="https://o94.at/programm/sendereihen/kulturschiene_fr">
-          Kulturschiene - Fr
-        </Link>
-      </Name>
-      <EpisodeDescription>
-        <Link href="https://o94.at/programm/sendung/id/1846911">
-          Brettspiele: Wer kennt den Räuber Hotzenplotz?
-        </Link>
-      </EpisodeDescription>
-    </TimetableItem>
-    <TimetableItem>
-      <Time>18:00</Time>
-      <Name>Radio UFF</Name>
-      <EpisodeDescription>Gewaltdynamiken</EpisodeDescription>
-    </TimetableItem>
-    <TimetableItem>
-      <Time>19:00</Time>
-      <Name>Dirndlbrand</Name>
-    </TimetableItem>
-    <TimetableItem>
-      <Time>20:00</Time>
-      <Name>trotz allem</Name>
-      <EpisodeDescription>Aubotanik statt Autobahn</EpisodeDescription>
-    </TimetableItem>
-    <TimetableItem>
-      <Time>21:00</Time>
-      <Name>Radio Rhabarber</Name>
-      <EpisodeDescription>Es ist wieder Klimacamp!</EpisodeDescription>
-    </TimetableItem>
-    <TimetableItem>
-      <Time>22:00</Time>
-      <Name>Awareness</Name>
-      <EpisodeDescription>
-        Ale X & Lore G - Kalimba is my telephone
-      </EpisodeDescription>
-    </TimetableItem>
-  </StyledRawTimetable>
-)
+export const RawTimetable = ({ currentProgram, dailyProgram, ...props }) => {
+  if (!dailyProgram || !currentProgram) return <Loading />
+
+  const currentProgramIndex = dailyProgram.reduce((pre, item, index) => {
+    if (currentProgram.start === item.start) return index
+    else return pre
+  }, null)
+
+  const now = new Date().getTime()
+  const closestNextProgram = dailyProgram.reduce(
+    (closestIndex, item, index) => {
+      const itemTime = new Date(item.start).getTime()
+      const closestTime =
+        closestIndex === null
+          ? null
+          : new Date(dailyProgram[closestIndex].start).getTime()
+      return itemTime > now && (closestTime === null || itemTime < closestTime)
+        ? index
+        : closestIndex
+    },
+    null
+  )
+
+  const firstNextProgramEntry =
+    currentProgramIndex === null ? closestNextProgram : currentProgramIndex
+  const nextProgramIndices = Array(6)
+    .fill(currentProgramIndex > 0 ? -1 : 0)
+    .map((add, i) => firstNextProgramEntry + add + i)
+
+  return (
+    <StyledRawTimetable {...props}>
+      {nextProgramIndices.map(i => (
+        <TimetableItem key={i} current={i === currentProgramIndex}>
+          <Time>{getTimeFromDateString(dailyProgram[i].start)}</Time>
+          <Name title={dailyProgram[i].summary}>
+            <Link
+              href={
+                dailyProgram[i].slug
+                  ? `https://o94.at/programm/sendereihen/${dailyProgram[i].slug}`
+                  : `https://o94.at/programm/sendereihen/id/${dailyProgram[i].id}`
+              }
+            >
+              {dailyProgram[i].title}
+            </Link>
+          </Name>
+          <EpisodeDescription>
+            <Link
+              href={`https://o94.at/programm/sendung/id/${dailyProgram[i].emission_ID}`}
+            >
+              {dailyProgram[i].note_title}
+            </Link>
+          </EpisodeDescription>
+        </TimetableItem>
+      ))}
+    </StyledRawTimetable>
+  )
+}
 
 const Timetable = props => (
   <StyledTimetable {...props}>
-    <RawTimetable />
+    <RawTimetable {...props} />
   </StyledTimetable>
 )
 

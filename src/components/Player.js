@@ -2,11 +2,13 @@ import { faAngleDown, faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { createRef, useState } from 'react'
 import styled, { css } from 'styled-components'
+import { getTimeFromDateString } from '../service/utils'
 import { minDesktop, minLaptop, maxMobile } from '../themes/media'
 import { RoundButton } from './Button'
 import Card from './Card'
 import Collapse, { collapseCss, uncollapseCss } from './Collapse'
 import Link from './Link'
+import Loading from './Loading'
 import { RawTimetable } from './Timetable'
 
 const StyledPlayer = styled(Card)`
@@ -110,12 +112,12 @@ const EpisodeInfo = styled.span`
     margin-right: 1rem;
   `)}
 
-  &::before {
+  &:not(:empty)::before {
     content: '»';
     margin-right: 0.1rem;
   }
 
-  &::after {
+  &:not(:empty)::after {
     content: '«';
     margin-left: 0.1rem;
   }
@@ -202,11 +204,16 @@ const GridTextCollapse = styled(Collapse)`
   ${p => p.identifier === 'TimetableLinkText' && minDesktop(collapseCss)}
 `
 
+const ShowInfoLoading = styled(Loading)`
+  margin-bottom: var(--text-block-margin);
+  align-self: end;
+`
+
 const TimetableCollapse = styled(Collapse)`
   ${minDesktop(collapseCss)}
 `
 
-const Player = props => {
+const Player = ({ currentProgram, dailyProgram, ...props }) => {
   const audioRef = createRef()
   const [playing, setPlaying] = useState(false)
   const [timetableVisible, setTimetableVisible] = useState(false)
@@ -226,6 +233,10 @@ const Player = props => {
     setTimetableVisible(!timetableVisible)
   }
 
+  const next =
+    (currentProgram && currentProgram.nextup && currentProgram.nextup[0]) ||
+    null
+
   return (
     <StyledPlayer {...props}>
       <audio ref={audioRef}>
@@ -239,19 +250,40 @@ const Player = props => {
       <PlayButton onClick={togglePlayback} active={playing} big>
         <FontAwesomeIcon icon={playing ? faStop : faPlay} />
       </PlayButton>
+
       <OnAirInfo>
         <OnAirFont>On Air</OnAirFont>
-        <OnAirUntil>bis 18:00</OnAirUntil>
+        {currentProgram?.end && (
+          <OnAirUntil>
+            bis {getTimeFromDateString(currentProgram.end)}
+          </OnAirUntil>
+        )}
       </OnAirInfo>
-      <ShowInfo>
-        <Link href="https://o94.at/programm/sendereihen/kulturschiene_fr">
-          Kulturschiene - Fr
-        </Link>
-      </ShowInfo>
+      {currentProgram ? (
+        <ShowInfo>
+          {currentProgram.show ? (
+            <Link
+              href={`https://o94.at/programm/sendereihen/id/${currentProgram.show}`}
+            >
+              {currentProgram.name}
+            </Link>
+          ) : (
+            currentProgram.name
+          )}
+        </ShowInfo>
+      ) : (
+        <ShowInfoLoading />
+      )}
       <EpisodeInfo>
-        <Link href="https://o94.at/programm/sendung/id/1846911">
-          Brettspiele: Wer kennt den Räuber Hotzenplotz?
-        </Link>
+        {/* <Link href="https://o94.at/programm/sendung/id/1846911"> */}
+        {currentProgram?.meta ? (
+          <>
+            {currentProgram.meta.song || 'unknown'}
+            {currentProgram.meta.artist && <> — {currentProgram.meta.artist}</>}
+          </>
+        ) : (
+          currentProgram?.note_title
+        )}
       </EpisodeInfo>
       <NextUp>
         <NextUpLine>
@@ -262,7 +294,13 @@ const Player = props => {
             collapsed={timetableVisible}
             identifier="NextUpText"
           >
-            <NextUpText>ab 18:00: Radio UFF – Gewaltdynamiken</NextUpText>
+            {next && (
+              <NextUpText>
+                ab {getTimeFromDateString(next.start)}: {next.name}
+                {' – '}
+                {next.note_title}
+              </NextUpText>
+            )}
           </GridTextCollapse>
           <GridTextCollapse
             maxSize="1rem"
@@ -272,8 +310,8 @@ const Player = props => {
             identifier="TimetableLinkText"
           >
             <TimetableLinkText>
-              <Link href="https://o94.at/programm/uebersicht?datum=2021-04-02">
-                Programm für 02.04.2021
+              <Link href="https://o94.at/de/programm/programm-uebersicht">
+                Programm für {new Date().toLocaleDateString('de-AT')}
               </Link>
             </TimetableLinkText>
           </GridTextCollapse>
@@ -290,7 +328,12 @@ const Player = props => {
           transitionDuration="0.7s"
           collapsed={!timetableVisible}
         >
-          <RawTimetable />
+          {dailyProgram && currentProgram && (
+            <RawTimetable
+              dailyProgram={dailyProgram}
+              currentProgram={currentProgram}
+            />
+          )}
         </TimetableCollapse>
       </NextUp>
     </StyledPlayer>
