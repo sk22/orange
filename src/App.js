@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const PageContent = styled.article`
+  grid-area: content;
   margin-bottom: var(--layout-gap);
 
   & > img {
