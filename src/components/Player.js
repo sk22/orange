@@ -213,6 +213,11 @@ const TimetableCollapse = styled(Collapse)`
   ${minDesktop(collapseCss)}
 `
 
+const PlayerTimetable = styled(RawTimetable)`
+  /* remove additional padding inside timetable */
+  margin-top: -0.5rem;
+`
+
 const Player = ({ currentProgram, dailyProgram, ...props }) => {
   const audioRef = createRef()
   const [playing, setPlaying] = useState(false)
@@ -329,7 +334,7 @@ const Player = ({ currentProgram, dailyProgram, ...props }) => {
           collapsed={!timetableVisible}
         >
           {dailyProgram && currentProgram && (
-            <RawTimetable
+            <PlayerTimetable
               dailyProgram={dailyProgram}
               currentProgram={currentProgram}
             />
