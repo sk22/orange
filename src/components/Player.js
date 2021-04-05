@@ -255,7 +255,12 @@ const Player = ({ currentProgram, ...props }) => {
           />
         )}
       </audio>
-      <PlayButton onClick={togglePlayback} active={playing} big>
+      <PlayButton
+        onClick={togglePlayback}
+        active={playing}
+        title={playing ? 'Wiedergabe stoppen' : 'Wiedergabe starten'}
+        big
+      >
         <FontAwesomeIcon icon={playing ? faStop : faPlay} />
       </PlayButton>
 
@@ -330,6 +335,9 @@ const Player = ({ currentProgram, ...props }) => {
             small
             onClick={toggleTimetable}
             timetableVisible={timetableVisible}
+            title={
+              timetableVisible ? 'Programm einklappen' : 'Programm ausklappen'
+            }
           >
             <FontAwesomeIcon icon={faAngleDown} />
           </CollapseButton>

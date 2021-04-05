@@ -57,9 +57,9 @@ const StyledMenuButton = styled(RoundButton)`
 
 const Header = ({ onToggleNav, navToggled }) => (
   <StyledHeader>
-    <StyledLogoIcon src={logoIcon} />
-    <StyledLogoText src={logoText} />
-    <StyledMenuButton onClick={onToggleNav} big>
+    <StyledLogoIcon src={logoIcon} alt="Logo" />
+    <StyledLogoText src={logoText} alt="Text-Logo ORANGE 94.0"/>
+    <StyledMenuButton onClick={onToggleNav} big title="Navigation öffnen">
       <FontAwesomeIcon icon={navToggled ? faTimes : faBars} />
     </StyledMenuButton>
   </StyledHeader>
