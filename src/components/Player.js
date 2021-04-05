@@ -266,9 +266,13 @@ const Player = ({ currentProgram, dailyProgram, ...props }) => {
       </OnAirInfo>
       {currentProgram ? (
         <ShowInfo>
-          {currentProgram.show ? (
+          {currentProgram.show || currentProgram.meta ? (
             <Link
-              href={`https://o94.at/programm/sendereihen/id/${currentProgram.show}`}
+              href={`https://o94.at/programm/${
+                currentProgram.show
+                  ? `sendereihen/id/${currentProgram.show}`
+                  : 'Musiktracker_in-random-order'
+              }`}
             >
               {currentProgram.name}
             </Link>

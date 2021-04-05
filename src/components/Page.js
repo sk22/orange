@@ -22,7 +22,7 @@ const Page = styled.main`
   ${minDesktop(css`
     max-width: 1200px;
     padding: 5rem;
-    grid-template-columns: 3fr 9fr;
+    grid-template-columns: 3fr 10fr;
     grid-template-areas:
       'header header'
       'navigation navigation'
