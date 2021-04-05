@@ -1,7 +1,7 @@
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
-import { minTablet, maxMobile, minDesktop } from '../themes/media'
+import { minTablet, maxMobile } from '../themes/media'
 import { card } from './Card'
 import Link from './Link'
 
