@@ -42,6 +42,10 @@ const PageNavCollapse = styled(Collapse)`
     margin-bottom: 1rem;
   }
 
+  &:focus-within {
+    ${uncollapseCss}
+  }
+
   ${minLaptop(uncollapseCss)}
 `
 
