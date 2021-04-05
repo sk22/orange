@@ -1,4 +1,4 @@
-import { getDayFormatted } from "./utils"
+import { getDayFormatted } from './utils'
 
 // import daily from '../mock-api-data/2021-04-05.json'
 // import current from '../mock-api-data/current_with-song.json'

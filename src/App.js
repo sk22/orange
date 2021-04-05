@@ -13,8 +13,8 @@ import Player from './components/Player'
 import Timetable from './components/Timetable'
 import { minDesktop, minTablet } from './themes/media'
 import orange from './themes/orange'
-import ctw from './assets/ctw2021_banner_web.png'
 import { progInfo } from './service/api'
+import ctw from './assets/ctw2021_banner_web.png'
 
 const GlobalStyle = createGlobalStyle`
   ${p => p.theme.global}
@@ -75,26 +75,14 @@ const PageTimetable = styled(Timetable)`
   `)}
 `
 
-const createFetcher = (apiCall, setter) => async () => {
-  const data = await apiCall()
-  setter(data)
-  console.debug(apiCall, data)
-}
-
 const App = () => {
   const [navToggled, setNavToggled] = useState(false)
   const [currentProgram, setCurrentProgram] = useState(null)
-  const [dailyProgram, setDailyProgram] = useState(null)
 
   useEffect(() => {
-    const fetcher = createFetcher(progInfo.current, setCurrentProgram)
-    const interval = setInterval(fetcher, 1000 * 10)
-    fetcher()
+    const fetchCurrentProgram = progInfo.current().then(setCurrentProgram)
+    const interval = setInterval(fetchCurrentProgram, 1000 * 10)
     return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    createFetcher(progInfo.daily, setDailyProgram)()
   }, [])
 
   return (
@@ -117,14 +105,8 @@ const App = () => {
           <Navigation />
           <LinksOnlyMobile />
         </PageNavCollapse>
-        <PagePlayer
-          currentProgram={currentProgram}
-          dailyProgram={dailyProgram}
-        />
-        <PageTimetable
-          currentProgram={currentProgram}
-          dailyProgram={dailyProgram}
-        />
+        <PagePlayer currentProgram={currentProgram} />
+        <PageTimetable currentProgram={currentProgram} />
         <PageContent>
           <img
             src={ctw}

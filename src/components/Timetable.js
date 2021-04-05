@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { getTimeFromDateString } from '../service/utils'
+import { getDayFormatted, getTimeFromDateString } from '../service/utils'
 import Card from './Card'
 import Link from './Link'
 import Loading from './Loading'
+import { progInfo } from '../service/api'
 
 const StyledRawTimetable = styled.ul`
   list-style: none;
@@ -60,22 +62,36 @@ const TimetableLoading = styled(Loading)`
   padding: 1rem;
 `
 
-export const RawTimetable = ({ currentProgram, dailyProgram, ...props }) => {
-  if (!dailyProgram || !currentProgram) return <TimetableLoading />
+export const RawTimetable = ({ currentProgram, ...props }) => {
+  const [dailyPrograms, setDailyPrograms] = useState([])
 
-  const currentProgramIndex = dailyProgram.reduce((pre, item, index) => {
+  const fetchDailyProgram = async () => {
+    const date = new Date()
+    const today = await progInfo.daily(getDayFormatted(date))
+    date.setDate(date.getDate() + 1)
+    const tomorrow = await progInfo.daily(getDayFormatted(date))
+    setDailyPrograms([...today, ...tomorrow])
+  }
+
+  useEffect(() => {
+    fetchDailyProgram()
+  }, [])
+
+  if (!currentProgram || dailyPrograms.length < 1) return <TimetableLoading />
+
+  const currentProgramIndex = dailyPrograms.reduce((pre, item, index) => {
     if (currentProgram.start === item.start) return index
     else return pre
   }, null)
 
   const now = new Date().getTime()
-  const closestNextProgram = dailyProgram.reduce(
+  const closestNextProgram = dailyPrograms.reduce(
     (closestIndex, item, index) => {
       const itemTime = new Date(item.start).getTime()
       const closestTime =
         closestIndex === null
           ? null
-          : new Date(dailyProgram[closestIndex].start).getTime()
+          : new Date(dailyPrograms[closestIndex].start).getTime()
       return itemTime > now && (closestTime === null || itemTime < closestTime)
         ? index
         : closestIndex
@@ -88,7 +104,7 @@ export const RawTimetable = ({ currentProgram, dailyProgram, ...props }) => {
   const nextProgramIndices = Array(6)
     .fill(currentProgramIndex > 0 ? -1 : 0)
     .map((add, i) => firstNextProgramEntry + add + i)
-    .filter(i => dailyProgram[i])
+    .filter(i => dailyPrograms[i])
 
   return (
     <StyledRawTimetable {...props}>
@@ -96,27 +112,27 @@ export const RawTimetable = ({ currentProgram, dailyProgram, ...props }) => {
         <TimetableItem key={i} current={i === currentProgramIndex}>
           <Time
             title={`${getTimeFromDateString(
-              dailyProgram[i].start
-            )} bis ${getTimeFromDateString(dailyProgram[i].end)}`}
+              dailyPrograms[i].start
+            )} bis ${getTimeFromDateString(dailyPrograms[i].end)}`}
           >
-            {getTimeFromDateString(dailyProgram[i].start)}
+            {getTimeFromDateString(dailyPrograms[i].start)}
           </Time>
-          <Name title={dailyProgram[i].summary}>
+          <Name title={dailyPrograms[i].summary}>
             <Link
               href={
-                dailyProgram[i].slug
-                  ? `https://o94.at/programm/sendereihen/${dailyProgram[i].slug}`
-                  : `https://o94.at/programm/sendereihen/id/${dailyProgram[i].id}`
+                dailyPrograms[i].slug
+                  ? `https://o94.at/programm/sendereihen/${dailyPrograms[i].slug}`
+                  : `https://o94.at/programm/sendereihen/id/${dailyPrograms[i].id}`
               }
             >
-              {dailyProgram[i].title}
+              {dailyPrograms[i].title}
             </Link>
           </Name>
           <EpisodeDescription>
             <Link
-              href={`https://o94.at/programm/sendung/id/${dailyProgram[i].emission_ID}`}
+              href={`https://o94.at/programm/sendung/id/${dailyPrograms[i].emission_ID}`}
             >
-              {dailyProgram[i].note_title}
+              {dailyPrograms[i].note_title}
             </Link>
           </EpisodeDescription>
         </TimetableItem>

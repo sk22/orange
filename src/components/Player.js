@@ -221,7 +221,7 @@ const PlayerTimetable = styled(RawTimetable)`
   margin-top: -0.5rem;
 `
 
-const Player = ({ currentProgram, dailyProgram, ...props }) => {
+const Player = ({ currentProgram, ...props }) => {
   const audioRef = createRef()
   const [playing, setPlaying] = useState(false)
   const [timetableVisible, setTimetableVisible] = useState(false)
@@ -339,11 +339,8 @@ const Player = ({ currentProgram, dailyProgram, ...props }) => {
           transitionDuration="0.7s"
           collapsed={!timetableVisible}
         >
-          {dailyProgram && currentProgram && (
-            <PlayerTimetable
-              dailyProgram={dailyProgram}
-              currentProgram={currentProgram}
-            />
+          {currentProgram && (
+            <PlayerTimetable currentProgram={currentProgram} />
           )}
         </TimetableCollapse>
       </NextUp>
