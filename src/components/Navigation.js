@@ -202,28 +202,28 @@ const Navigation = props => (
       <NavLi>
         <NavLiHeader>Programm</NavLiHeader>
         <SubUl>
-          <NavItem href="/de/programm/programm-uebersicht">
+          <NavItem href="https://o94.at/de/programm/programm-uebersicht">
             Programm-Übersicht
           </NavItem>
-          <NavItem href="/de/programm/sendereihen">Sendereihen</NavItem>
-          <NavItem href="/de/programm/sendungsmacherInnen">
+          <NavItem href="https://o94.at/de/programm/sendereihen">Sendereihen</NavItem>
+          <NavItem href="https://o94.at/de/programm/sendungsmacherInnen">
             Radiomacher_innen
           </NavItem>
-          <NavItem href="/de/mitmachen">Mitmachen</NavItem>
-          <NavItem href="/de/programm/Musiktracker_in-random-order">
-            Musik Tracklist
+          <NavItem href="https://o94.at/de/mitmachen">Mitmachen</NavItem>
+          <NavItem href="https://o94.at/de/programm/Musiktracker_in-random-order">
+            Musik-Tracklist
           </NavItem>
-          <NavItem href="/de/rm-vertretung">
+          <NavItem href="https://o94.at/de/rm-vertretung">
             Radiomacher_innen-Vertretung
           </NavItem>
-          <NavItem href="/de/hoeren">ORANGE 94.0 Hören</NavItem>
-          <NavItem href="/de/programmgremium">Programmgremium</NavItem>
-          <NavItem href="/de/events">Veranstaltungen &amp; Feste</NavItem>
-          <NavItem href="/de/newsletter">Newsletter</NavItem>
-          <NavItem href="/de/schwerpunkt-corona">
+          <NavItem href="https://o94.at/de/hoeren">ORANGE 94.0 Hören</NavItem>
+          <NavItem href="https://o94.at/de/programmgremium">Programmgremium</NavItem>
+          <NavItem href="https://o94.at/de/events">Veranstaltungen &amp; Feste</NavItem>
+          <NavItem href="https://o94.at/de/newsletter">Newsletter</NavItem>
+          <NavItem href="https://o94.at/de/schwerpunkt-corona">
             Sendeschwerpunkt Corona-Virus
           </NavItem>
-          <NavItem href="/de/schulradiotag">
+          <NavItem href="https://o94.at/de/schulradiotag">
             Sendeschwerpunkt Schulradiotag
           </NavItem>
         </SubUl>
@@ -231,30 +231,30 @@ const Navigation = props => (
       <NavLi>
         <NavLiHeader>Ausbildung</NavLiHeader>
         <SubUl>
-          <NavItem href="/de/ausbildung/kurse">Kurse</NavItem>
-          <NavItem href="/de/ausbildung/trainerinnen">Trainer_innen</NavItem>
-          <NavItem href="/de/ausbildung/downloads">Downloads</NavItem>
+          <NavItem href="https://o94.at/de/ausbildung/kurse">Kurse</NavItem>
+          <NavItem href="https://o94.at/de/ausbildung/trainerinnen">Trainer_innen</NavItem>
+          <NavItem href="https://o94.at/de/ausbildung/downloads">Downloads</NavItem>
         </SubUl>
       </NavLi>
       <NavLi>
         <NavLiHeader>Projekte</NavLiHeader>
         <SubUl>
-          <NavItem href="/de/andi">ANDI</NavItem>
-          <NavItem href="/de/projekte/medienkritik">
+          <NavItem href="https://o94.at/de/andi">ANDI</NavItem>
+          <NavItem href="https://o94.at/de/projekte/medienkritik">
             Medienkritik Orange
           </NavItem>
-          <NavItem href="/de/post-normal">Post-Normal</NavItem>
-          <NavItem href="/de/projekte/globale-dialoge">Globale Dialoge</NavItem>
-          <NavItem href="/de/projekte/RadioMuse">RadioMuse</NavItem>
-          <NavItem href="/de/projekte/Bantaba">Bantaba</NavItem>
-          <NavItem href="/de/projekte/radio-auf-graetzltour">
+          <NavItem href="https://o94.at/de/post-normal">Post-Normal</NavItem>
+          <NavItem href="https://o94.at/de/projekte/globale-dialoge">Globale Dialoge</NavItem>
+          <NavItem href="https://o94.at/de/projekte/RadioMuse">RadioMuse</NavItem>
+          <NavItem href="https://o94.at/de/projekte/Bantaba">Bantaba</NavItem>
+          <NavItem href="https://o94.at/de/projekte/radio-auf-graetzltour">
             Radio auf Grätzltour
           </NavItem>
-          <NavItem href="/de/projekte/frauen-starten-neu-in-wien">
+          <NavItem href="https://o94.at/de/projekte/frauen-starten-neu-in-wien">
             Frauen starten neu in Wien
           </NavItem>
-          <NavItem href="/de/projekte/delerama">DELERAMA</NavItem>
-          <NavItem href="/de/projekte/new-life-in-vienna">
+          <NavItem href="https://o94.at/de/projekte/delerama">DELERAMA</NavItem>
+          <NavItem href="https://o94.at/de/projekte/new-life-in-vienna">
             New Life in Vienna
           </NavItem>
         </SubUl>
@@ -262,20 +262,20 @@ const Navigation = props => (
       <NavLi>
         <NavLiHeader>Über ORANGE 94.0</NavLiHeader>
         <SubUl>
-          <NavItem href="/de/about/leitbild">Leitbild</NavItem>
-          <NavItem href="/de/about/geschichte">Geschichte</NavItem>
-          <NavItem href="/de/about/mitarbeiterInnen">Team</NavItem>
-          <NavItem href="/de/about/freier-radiobeitrag">
+          <NavItem href="https://o94.at/de/about/leitbild">Leitbild</NavItem>
+          <NavItem href="https://o94.at/de/about/geschichte">Geschichte</NavItem>
+          <NavItem href="https://o94.at/de/about/mitarbeiterInnen">Team</NavItem>
+          <NavItem href="https://o94.at/de/about/freier-radiobeitrag">
             Freier Radiobeitrag
           </NavItem>
-          <NavItem href="/de/presse">Presse</NavItem>
-          <NavItem href="/de/about/partner-innen">Partner_innen</NavItem>
-          <NavItem href="/de/about/support">Support</NavItem>
-          <NavItem href="/de/about/kontakt">Kontakt</NavItem>
-          <NavItem href="/de/node/108">Aktuelles</NavItem>
-          <NavItem href="/de/intern">o94 intern</NavItem>
-          <NavItem href="/de/Orangenes-Gremium">Orangenes Gremium</NavItem>
-          <NavItem href="/de/jobs">Jobs</NavItem>
+          <NavItem href="https://o94.at/de/presse">Presse</NavItem>
+          <NavItem href="https://o94.at/de/about/partner-innen">Partner_innen</NavItem>
+          <NavItem href="https://o94.at/de/about/support">Support</NavItem>
+          <NavItem href="https://o94.at/de/about/kontakt">Kontakt</NavItem>
+          <NavItem href="https://o94.at/de/node/108">Aktuelles</NavItem>
+          <NavItem href="https://o94.at/de/intern">o94 intern</NavItem>
+          <NavItem href="https://o94.at/de/Orangenes-Gremium">Orangenes Gremium</NavItem>
+          <NavItem href="https://o94.at/de/jobs">Jobs</NavItem>
         </SubUl>
       </NavLi>
     </NavUl>
