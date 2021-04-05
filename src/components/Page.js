@@ -20,7 +20,7 @@ const Page = styled.main`
   `)}
 
   ${minDesktop(css`
-    max-width: 1200px;
+    max-width: 1300px;
     padding: 5rem;
     grid-template-columns: 3fr 10fr;
     grid-template-areas:
