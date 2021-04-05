@@ -68,6 +68,7 @@ const navUncollapseCss = css`
 
 const PageTimetable = styled(Timetable)`
   display: none;
+  grid-area: timetable;
 
   ${minDesktop(css`
     display: initial;

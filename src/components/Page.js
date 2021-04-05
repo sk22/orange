@@ -28,7 +28,7 @@ const Page = styled.main`
       'header header'
       'navigation navigation'
       'player player'
-      'schedule content'
+      'timetable content'
       'links content'
       'footer footer';
   `)}
