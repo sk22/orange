@@ -153,7 +153,7 @@ const NavLink = styled(Link)`
     }
   `)}
 
-  ${NavLi}:hover &, ${NavLi}:focus-within & {
+  ${NavLi}:hover &, ${NavUl}:not(:hover) ${NavLi}:focus-within & {
     border-bottom-color: var(--primary-link-border-color);
   }
 `
