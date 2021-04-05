@@ -26,7 +26,12 @@ const Name = styled.span`
 `
 const EpisodeDescription = styled.span`
   grid-area: episode;
-  margin-top: var(--text-block-margin);
+
+  ${p =>
+    !p.empty &&
+    css`
+      margin-top: var(--text-block-margin);
+    `}
 `
 const TimetableItem = styled.li`
   display: grid;
@@ -37,7 +42,7 @@ const TimetableItem = styled.li`
     'time name'
     '. episode';
   grid-template-columns: auto 1fr;
-  column-gap: 0.5rem;
+  column-gap: 0.7rem;
 
   & + & {
     border-top: var(--separator-width) solid var(--separator-color);
@@ -128,7 +133,7 @@ export const RawTimetable = ({ currentProgram, ...props }) => {
               {dailyPrograms[i].title}
             </Link>
           </Name>
-          <EpisodeDescription>
+          <EpisodeDescription empty={!dailyPrograms[i].note_title}>
             <Link
               href={`https://o94.at/programm/sendung/id/${dailyPrograms[i].emission_ID}`}
             >
