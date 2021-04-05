@@ -80,8 +80,9 @@ const App = () => {
   const [currentProgram, setCurrentProgram] = useState(null)
 
   useEffect(() => {
-    const fetchCurrentProgram = progInfo.current().then(setCurrentProgram)
+    const fetchCurrentProgram = () => progInfo.current().then(setCurrentProgram)
     const interval = setInterval(fetchCurrentProgram, 1000 * 10)
+    fetchCurrentProgram()
     return () => clearInterval(interval)
   }, [])
 
