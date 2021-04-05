@@ -65,6 +65,7 @@ const OnAirInfo = styled.span`
     /* adding margin to keep text centered next to button as episode info
        (2nd row) is smaller */
     margin-top: 0.5rem;
+    align-self: baseline;
   `)}
 `
 
@@ -81,6 +82,7 @@ const ShowInfo = styled.span`
 
   ${minDesktop(css`
     margin-right: 0.5rem;
+    align-self: baseline;
     &::after {
       margin-left: 0.5rem;
       content: '—';
@@ -98,8 +100,7 @@ const EpisodeInfo = styled.span`
 
   ${minDesktop(css`
     font-size: 1.1rem;
-    align-self: end;
-    margin-bottom: var(--text-block-margin);
+    align-self: baseline;
   `)}
 
   ${minLaptop(css`
