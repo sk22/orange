@@ -12,7 +12,8 @@ const Page = styled.main`
   grid-template-areas:
     'header'
     'navigation'
-    'player';
+    'player'
+    'content';
 
   ${minLaptop(css`
     max-width: 900px;
