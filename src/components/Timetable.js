@@ -14,7 +14,7 @@ const StyledRawTimetable = styled.ul`
 `
 
 const StyledTimetable = styled(Card)`
-  padding: 0.5rem 0;
+  padding: 0;
 `
 
 const Time = styled.span`
@@ -35,14 +35,12 @@ const EpisodeDescription = styled.span`
 `
 const TimetableItem = styled.li`
   display: grid;
-  padding: 1rem;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  padding: 0.8rem 1rem;
   grid-template-areas:
     'time name'
     '. episode';
   grid-template-columns: auto 1fr;
-  column-gap: 0.7rem;
+  column-gap: 0.8rem;
 
   & + & {
     border-top: var(--separator-width) solid var(--separator-color);
