@@ -93,7 +93,13 @@ export const RawTimetable = ({ currentProgram, dailyProgram, ...props }) => {
     <StyledRawTimetable {...props}>
       {nextProgramIndices.map(i => (
         <TimetableItem key={i} current={i === currentProgramIndex}>
-          <Time>{getTimeFromDateString(dailyProgram[i].start)}</Time>
+          <Time
+            title={`${getTimeFromDateString(
+              dailyProgram[i].start
+            )} bis ${getTimeFromDateString(dailyProgram[i].end)}`}
+          >
+            {getTimeFromDateString(dailyProgram[i].start)}
+          </Time>
           <Name title={dailyProgram[i].summary}>
             <Link
               href={
