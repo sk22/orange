@@ -12,7 +12,7 @@ const StyledRawTimetable = styled.ul`
 `
 
 const StyledTimetable = styled(Card)`
-  padding: 0;
+  padding: 0.5rem 0;
 `
 
 const Time = styled.span`
