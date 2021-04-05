@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { createRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { getTimeFromDateString } from '../service/utils'
-import { minDesktop, minLaptop, maxMobile } from '../themes/media'
+import { minDesktop, minTablet, maxMobile } from '../themes/media'
 import { RoundButton } from './Button'
 import Card from './Card'
 import Collapse, { collapseCss, uncollapseCss } from './Collapse'
@@ -24,7 +24,7 @@ const StyledPlayer = styled(Card)`
   grid-template-columns: auto 1fr;
   grid-template-rows: auto;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     grid-template-areas:
       'play-button on-air show-info'
       'play-button episode-info episode-info'
@@ -55,7 +55,7 @@ const OnAirInfo = styled.span`
   margin-bottom: var(--text-block-margin);
   align-self: end;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     &::after {
       content: ':';
     }
@@ -74,7 +74,7 @@ const ShowInfo = styled.span`
   font-size: 1.1rem;
   align-self: start;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     margin-right: 1rem;
     margin-bottom: var(--text-block-margin);
     align-self: end;
@@ -103,7 +103,7 @@ const EpisodeInfo = styled.span`
     align-self: baseline;
   `)}
 
-  ${minLaptop(css`
+  ${minTablet(css`
     margin-right: 1rem;
   `)}
 

@@ -1,7 +1,7 @@
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
-import { minLaptop, maxMobile } from '../themes/media'
+import { minTablet, maxMobile } from '../themes/media'
 import { card } from './Card'
 import Link from './Link'
 
@@ -22,7 +22,7 @@ const NavUl = styled.ul`
   padding: 0;
   font-size: 0.9rem;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     flex-direction: row;
     justify-content: space-between;
   `)}
@@ -47,13 +47,13 @@ const NavLi = styled.li`
       border-top: var(--separator-width) solid var(--separator-color);
     `)}
 
-    ${minLaptop(css`
+    ${minTablet(css`
       border-left: var(--separator-width) solid var(--separator-color);
     `)}
   }
 
   /* make sure only one column is highlighted */
-  ${minLaptop(css`
+  ${minTablet(css`
     &:hover,
     ${NavUl}:not(:hover) &:focus-within {
       ${highlightColumnCss}
@@ -93,7 +93,7 @@ const StyledSubUl = styled.ul`
   margin-bottom: calc(-1 * var(--nav-items-max-height));
   margin-left: 0;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     /* estimate of fontawesome angle-right width (list bullet) */
     margin-left: 1.13rem;
     ${NavUl}:focus-within & {
@@ -146,7 +146,7 @@ const NavLink = styled(Link)`
     border-radius: 0.2rem;
   `)}
 
-  ${minLaptop(css`
+  ${minTablet(css`
     &:hover,
     &:focus {
       border-bottom-width: var(--primary-link-border-width);
@@ -179,7 +179,7 @@ const NavLiHeader = styled.button`
   overflow: hidden;
   white-space: nowrap;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     ${NavLi}:hover &, ${NavLi}:focus-within & {
       ${noEllipsisCss}
     }

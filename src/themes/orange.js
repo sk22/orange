@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 import arvo from '../assets/arvo.woff2'
-import { minLaptop } from './media'
+import { minTablet } from './media'
 
 const base = css`
   :root {
@@ -24,7 +24,7 @@ const base = css`
     --box-shadow-preserve-space: 1.5rem;
 
     --content-padding: 1rem;
-    ${minLaptop(css`
+    ${minTablet(css`
       --content-padding: 1.3rem;
     `)}
   }

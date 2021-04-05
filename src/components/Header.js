@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import logoIcon from '../assets/logo-icon.svg'
 import logoText from '../assets/logo-text.png'
 import { RoundButton } from './Button'
-import { minLaptop, minDesktop } from '../themes/media'
+import { minTablet, minDesktop } from '../themes/media'
 
 const StyledHeader = styled.header`
   grid-area: header;
@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   align-items: center;
   margin-bottom: 1.5rem;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     margin-bottom: 3rem;
   `)}
 
@@ -35,7 +35,7 @@ const StyledLogoText = styled.img`
   display: none;
   filter: invert(var(--invert-colors));
 
-  ${minLaptop(css`
+  ${minTablet(css`
     display: initial;
     margin-left: 1.5rem;
     height: 3rem;
@@ -50,7 +50,7 @@ const StyledLogoText = styled.img`
 const StyledMenuButton = styled(RoundButton)`
   margin-left: auto;
 
-  ${minLaptop(css`
+  ${minTablet(css`
     display: none;
   `)}
 `

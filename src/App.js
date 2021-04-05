@@ -11,7 +11,7 @@ import Navigation from './components/Navigation'
 import Page from './components/Page'
 import Player from './components/Player'
 import Timetable from './components/Timetable'
-import { minDesktop, minLaptop } from './themes/media'
+import { minDesktop, minTablet } from './themes/media'
 import orange from './themes/orange'
 import ctw from './assets/ctw2021_banner_web.png'
 import { progInfo } from './service/api'
@@ -47,7 +47,7 @@ const PageNavCollapse = styled(Collapse)`
     ${uncollapseCss}
   }
 
-  ${minLaptop(uncollapseCss)}
+  ${minTablet(uncollapseCss)}
 `
 
 const PagePlayer = styled(Player)`

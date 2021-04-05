@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import { maxMobile, minLaptop } from './media'
+import { maxMobile, minTablet } from './media'
 
 export const noMobile = css`
   ${maxMobile(
@@ -10,7 +10,7 @@ export const noMobile = css`
 `
 
 export const onlyMobile = css`
-  ${minLaptop(
+  ${minTablet(
     css`
       display: none;
     `

@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components'
-import { minLaptop } from '../themes/media'
+import { minTablet } from '../themes/media'
 
 export const block = css`
   padding: 1rem;
   margin-bottom: var(--layout-gap);
 
-  ${minLaptop(css`
+  ${minTablet(css`
     padding: 1.3rem;
   `)}
 `
