@@ -1,7 +1,7 @@
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
-import { minTablet, maxMobile } from '../themes/media'
+import { minTablet, maxMobile, minDesktop } from '../themes/media'
 import { card } from './Card'
 import Link from './Link'
 
@@ -117,14 +117,11 @@ const SubUl = props => <StyledSubUl className="fa-ul" {...props} />
 
 const SubLi = styled.li`
   & + & {
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
+    ${minDesktop(css`
+      margin-top: 0.3rem;
+    `)}
   }
-
-  ${maxMobile(css`
-    & + & {
-      margin-top: 0.4rem;
-    }
-  `)}
 `
 
 const NoMobileIcon = styled(FontAwesomeIcon)`
