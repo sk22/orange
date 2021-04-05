@@ -88,6 +88,7 @@ export const RawTimetable = ({ currentProgram, dailyProgram, ...props }) => {
   const nextProgramIndices = Array(6)
     .fill(currentProgramIndex > 0 ? -1 : 0)
     .map((add, i) => firstNextProgramEntry + add + i)
+    .filter(i => dailyProgram[i])
 
   return (
     <StyledRawTimetable {...props}>
