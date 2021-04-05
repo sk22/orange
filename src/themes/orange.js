@@ -95,6 +95,12 @@ const global = css`
   @media (prefers-color-scheme: dark) {
     ${dark}
   }
+
+  @media (prefers-reduced-motion) {
+    * {
+      transition: none !important;
+    }
+  }
 `
 
 const theme = { global }

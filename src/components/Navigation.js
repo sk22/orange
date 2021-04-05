@@ -96,8 +96,13 @@ const StyledSubUl = styled.ul`
   ${minLaptop(css`
     /* estimate of fontawesome angle-right width (list bullet) */
     margin-left: 1.13rem;
-    ${NavUl}:hover &, ${NavUl}:focus-within & {
+    ${NavUl}:focus-within & {
       ${uncollapseCss}
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      ${NavUl}:hover & {
+        ${uncollapseCss}
+      }
     }
   `)}
 
