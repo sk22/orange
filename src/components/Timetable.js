@@ -55,8 +55,13 @@ const TimetableItem = styled.li`
     `}
 `
 
+const TimetableLoading = styled(Loading)`
+  /* TODO: make prettier */
+  padding: 1rem;
+`
+
 export const RawTimetable = ({ currentProgram, dailyProgram, ...props }) => {
-  if (!dailyProgram || !currentProgram) return <Loading />
+  if (!dailyProgram || !currentProgram) return <TimetableLoading />
 
   const currentProgramIndex = dailyProgram.reduce((pre, item, index) => {
     if (currentProgram.start === item.start) return index
