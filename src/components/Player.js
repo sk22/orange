@@ -127,6 +127,7 @@ const EpisodeInfo = styled.span`
 const PlayButton = styled(RoundButton)`
   margin-left: 1rem;
   margin-right: 1rem;
+  align-self: start;
   grid-area: play-button;
 
   ${p =>
@@ -201,6 +202,7 @@ const TimetableLinkText = styled.div`
 const GridTextCollapse = styled(Collapse)`
   grid-area: 1 / 1 / 1 / 1;
 
+  /* TODO: uncollapse on focus */
   ${p => p.identifier === 'NextUpText' && minDesktop(uncollapseCss)}
   ${p => p.identifier === 'TimetableLinkText' && minDesktop(collapseCss)}
 `
