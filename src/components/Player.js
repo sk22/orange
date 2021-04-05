@@ -309,8 +309,7 @@ const Player = ({ currentProgram, dailyProgram, ...props }) => {
             {next && (
               <NextUpText>
                 ab {getTimeFromDateString(next.start)}: {next.name}
-                {' – '}
-                {next.note_title}
+                {next.note_title && <> – {next.note_title}</>}
               </NextUpText>
             )}
           </GridTextCollapse>
