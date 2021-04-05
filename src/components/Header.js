@@ -1,7 +1,7 @@
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { css } from 'styled-components'
-import logoIcon from '../assets/logo-icon.png'
+import logoIcon from '../assets/logo-icon.svg'
 import logoText from '../assets/logo-text.png'
 import { RoundButton } from './Button'
 import { minLaptop, minDesktop } from '../themes/media'
