@@ -15,6 +15,7 @@ const base = css`
     --text-block-margin: 0.3rem;
     --primary-link-border-color: white;
     --primary-link-border-width: 0.1rem;
+    --primary-text-color: white;
     --layout-gap: 1rem;
     --round-button-size: 3rem;
     --round-button-size-big: 3.5rem;

@@ -30,7 +30,7 @@ const NavUl = styled.ul`
 
 const highlightColumnCss = css`
   font-weight: bold;
-  color: white;
+  color: var(--primary-text-color);
   position: relative;
   background: var(--primary);
 `
