@@ -123,10 +123,7 @@ const SubLi = styled.li`
   `)}
 
   & + & {
-    margin-top: 0.5rem;
-    ${minDesktop(css`
-      margin-top: 0.3rem;
-    `)}
+    margin-top: 0.3rem;
   }
 `
 
