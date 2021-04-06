@@ -119,10 +119,16 @@ export const RawTimetable = ({ currentProgram, ...props }) => {
 
   const firstNextProgramEntry =
     currentProgramIndex === null ? closestNextProgram : currentProgramIndex
-  const nextProgramIndices = Array(6)
+  const nextProgramIndices = Array(dailyPrograms.length)
     .fill(0) //currentProgramIndex === 0 ? 0 : -1)
     .map((add, i) => firstNextProgramEntry + add + i)
     .filter(i => dailyPrograms[i])
+    .filter(
+      i =>
+        // only use the first occurrence of a program entry with the same
+        // start time (e.g. shows starting at 0:00 are fetched twice)
+        dailyPrograms.findIndex(p => p.start === dailyPrograms[i].start) === i
+    ).slice(0, 6)
 
   const randomOrderPlaying = currentProgram.meta
 
