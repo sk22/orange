@@ -27,8 +27,15 @@ const Time = styled.span`
     p.live &&
     css`
       letter-spacing: 0.1rem;
-      font-weight: bold;
+      /* font-weight: bold; */
     `}
+
+  ${p =>
+    p.live ||
+    (p.current &&
+      css`
+        font-weight: bold;
+      `)}
 `
 const Name = styled.span`
   grid-area: name;
@@ -128,14 +135,15 @@ export const RawTimetable = ({ currentProgram, ...props }) => {
         // only use the first occurrence of a program entry with the same
         // start time (e.g. shows starting at 0:00 are fetched twice)
         dailyPrograms.findIndex(p => p.start === dailyPrograms[i].start) === i
-    ).slice(0, 6)
+    )
+    .slice(0, 6)
 
   const randomOrderPlaying = currentProgram.meta
 
   return (
     <StyledRawTimetable {...props}>
       {randomOrderPlaying && (
-        <TimetableItem key="random-order-music" current={true}>
+        <TimetableItem key="random-order-music" current>
           <Time live>live</Time>
           <Name>
             <Link href="https://o94.at/programm/Musiktracker_in-random-order">
@@ -148,6 +156,7 @@ export const RawTimetable = ({ currentProgram, ...props }) => {
       {nextProgramIndices.map(i => (
         <TimetableItem key={i} current={i === currentProgramIndex}>
           <Time
+            current={i === currentProgramIndex}
             title={`${getTimeFromDateString(
               dailyPrograms[i].start
             )} bis ${getTimeFromDateString(dailyPrograms[i].end)}`}
