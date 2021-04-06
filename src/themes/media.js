@@ -6,13 +6,13 @@ export const sizes = {
   desktop: '1024px'
 }
 
-export const maxWidth = (size) => styles => css`
+export const maxWidth = size => styles => css`
   @media screen and (max-width: ${size}) {
     ${styles}
   }
 `
 
-export const minWidth = (size) => styles => css`
+export const minWidth = size => styles => css`
   @media screen and (min-width: ${size}) {
     ${styles}
   }

@@ -5,12 +5,14 @@ import Card from './Card'
 import Link from './Link'
 import Loading from './Loading'
 import { progInfo } from '../service/api'
+import { minDesktop } from '../themes/media'
 
 const StyledRawTimetable = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
   font-size: 0.9rem;
+  hyphens: auto;
 `
 
 const StyledTimetable = styled(Card)`
@@ -19,6 +21,14 @@ const StyledTimetable = styled(Card)`
 
 const Time = styled.span`
   grid-area: time;
+  text-transform: uppercase;
+
+  ${p =>
+    p.live &&
+    css`
+      letter-spacing: 0.1rem;
+      font-weight: bold;
+    `}
 `
 const Name = styled.span`
   grid-area: name;
@@ -39,8 +49,8 @@ const TimetableItem = styled.li`
   grid-template-areas:
     'time name'
     '. episode';
-  grid-template-columns: auto 1fr;
-  column-gap: 0.8rem;
+  grid-template-columns: 2.5rem 1fr;
+  column-gap: 0.4rem;
 
   & + & {
     border-top: var(--separator-width) solid var(--separator-color);
@@ -58,6 +68,11 @@ const TimetableItem = styled.li`
         border-bottom-width: var(--primary-link-border-width);
       }
     `}
+
+  ${minDesktop(css`
+    padding: 0.8rem 1rem;
+    column-gap: 0.8rem;
+  `)}
 `
 
 const TimetableLoading = styled(Loading)`
@@ -105,12 +120,25 @@ export const RawTimetable = ({ currentProgram, ...props }) => {
   const firstNextProgramEntry =
     currentProgramIndex === null ? closestNextProgram : currentProgramIndex
   const nextProgramIndices = Array(6)
-    .fill(currentProgramIndex > 0 ? -1 : 0)
+    .fill(0) //currentProgramIndex === 0 ? 0 : -1)
     .map((add, i) => firstNextProgramEntry + add + i)
     .filter(i => dailyPrograms[i])
 
+  const randomOrderPlaying = currentProgram.meta
+
   return (
     <StyledRawTimetable {...props}>
+      {randomOrderPlaying && (
+        <TimetableItem key="random-order-music" current={true}>
+          <Time live>live</Time>
+          <Name>
+            <Link href="https://o94.at/programm/Musiktracker_in-random-order">
+              o94 Musik
+            </Link>
+          </Name>
+          <EpisodeDescription>Random Order</EpisodeDescription>
+        </TimetableItem>
+      )}
       {nextProgramIndices.map(i => (
         <TimetableItem key={i} current={i === currentProgramIndex}>
           <Time

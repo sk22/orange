@@ -216,10 +216,7 @@ const TimetableCollapse = styled(Collapse)`
   ${minDesktop(collapseCss)}
 `
 
-const PlayerTimetable = styled(RawTimetable)`
-  /* remove additional padding inside timetable */
-  margin-top: -0.5rem;
-`
+const PlayerTimetable = styled(RawTimetable)``
 
 const Player = ({ currentProgram, ...props }) => {
   const audioRef = createRef()

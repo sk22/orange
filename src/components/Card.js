@@ -8,6 +8,8 @@ export const card = css`
   border-bottom: var(--border-width) solid var(--primary);
   box-shadow: var(--box-shadow);
   margin-bottom: var(--layout-gap);
+  overflow: hidden;
+  word-break: break-word;
 `
 
 const Card = styled.aside`
