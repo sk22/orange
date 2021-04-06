@@ -160,6 +160,8 @@ const NextUp = styled.div`
 const CollapseButton = styled(RoundButton)`
   margin: 0.8rem;
   transition: 0.3s transform ease;
+  align-self: start;
+
   ${p =>
     p.timetableVisible &&
     css`
