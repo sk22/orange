@@ -77,7 +77,7 @@ const TimetableItem = styled.li`
 
 const TimetableLoading = styled(Loading)`
   /* TODO: make prettier */
-  padding: 1rem;
+  padding: 1.5rem;
 `
 
 export const RawTimetable = ({ currentProgram, ...props }) => {

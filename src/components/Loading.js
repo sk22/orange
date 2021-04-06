@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const StyledLoading = styled.span`
+  display: inline-block;
   font-style: italic;
 `
 
