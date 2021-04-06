@@ -83,10 +83,15 @@ const ShowInfo = styled.span`
   ${minDesktop(css`
     margin-right: 0.5rem;
     align-self: baseline;
-    &::after {
-      margin-left: 0.5rem;
-      content: '—';
-    }
+
+    ${p =>
+      !p.episodeInfoEmpty &&
+      css`
+        &::after {
+          margin-left: 0.5rem;
+          content: '—';
+        }
+      `}
   `)}
 `
 
@@ -272,7 +277,9 @@ const Player = ({ currentProgram, ...props }) => {
         )}
       </OnAirInfo>
       {currentProgram ? (
-        <ShowInfo>
+        <ShowInfo
+          episodeInfoEmpty={!currentProgram?.meta && !currentProgram.note_title}
+        >
           {currentProgram.show || currentProgram.meta ? (
             <Link
               href={`https://o94.at/programm/${
