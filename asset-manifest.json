@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.js": "/static/js/main.44afcc2b.chunk.js",
+    "main.js.map": "/static/js/main.44afcc2b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.38770daf.js",
+    "runtime-main.js.map": "/static/js/runtime-main.38770daf.js.map",
+    "static/js/2.5ff3a331.chunk.js": "/static/js/2.5ff3a331.chunk.js",
+    "static/js/2.5ff3a331.chunk.js.map": "/static/js/2.5ff3a331.chunk.js.map",
+    "static/js/3.d3f4de23.chunk.js": "/static/js/3.d3f4de23.chunk.js",
+    "static/js/3.d3f4de23.chunk.js.map": "/static/js/3.d3f4de23.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.5ff3a331.chunk.js.LICENSE.txt": "/static/js/2.5ff3a331.chunk.js.LICENSE.txt",
+    "static/media/arvo.d053e781.woff2": "/static/media/arvo.d053e781.woff2",
+    "static/media/cba_logo.2af01661.svg": "/static/media/cba_logo.2af01661.svg",
+    "static/media/ctw2021_banner_web.dc907358.png": "/static/media/ctw2021_banner_web.dc907358.png",
+    "static/media/logo-icon.56e8bc4d.svg": "/static/media/logo-icon.56e8bc4d.svg",
+    "static/media/logo-text.849f4ad4.png": "/static/media/logo-text.849f4ad4.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.38770daf.js",
+    "static/js/2.5ff3a331.chunk.js",
+    "static/js/main.44afcc2b.chunk.js"
+  ]
+}
