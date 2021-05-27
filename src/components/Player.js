@@ -287,11 +287,10 @@ const Player = ({ currentProgram, ...props }) => {
                   ? `sendereihen/id/${currentProgram.show}`
                   : 'Musiktracker_in-random-order'
               }`}
-            >
-              {currentProgram.name}
-            </Link>
+              dangerouslySetInnerHTML={{ __html: currentProgram.name }}
+            />
           ) : (
-            currentProgram.name
+            <span dangerouslySetInnerHTML={{ __html: currentProgram.name }} />
           )}
         </ShowInfo>
       ) : (
