@@ -47,21 +47,21 @@ const StyledLogoText = styled.img`
   `)}
 `
 
-const StyledMenuButton = styled(RoundButton)`
-  margin-left: auto;
+// const StyledMenuButton = styled(RoundButton)`
+//   margin-left: auto;
 
-  ${minTablet(css`
-    display: none;
-  `)}
-`
+//   ${minTablet(css`
+//     display: none;
+//   `)}
+// `
 
 const Header = ({ onToggleNav, navToggled }) => (
   <StyledHeader>
     <StyledLogoIcon src={logoIcon} alt="Logo" />
     <StyledLogoText src={logoText} alt="Text-Logo ORANGE 94.0"/>
-    <StyledMenuButton onClick={onToggleNav} big title="Navigation öffnen">
+    {/* <StyledMenuButton onClick={onToggleNav} big title="Navigation öffnen">
       <FontAwesomeIcon icon={navToggled ? faTimes : faBars} />
-    </StyledMenuButton>
+    </StyledMenuButton> */}
   </StyledHeader>
 )
 

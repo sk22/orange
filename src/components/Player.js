@@ -10,6 +10,7 @@ import Collapse, { collapseCss, uncollapseCss } from './Collapse'
 import Link from './Link'
 import Loading from './Loading'
 import { RawTimetable } from './Timetable'
+import ProgramLink from './ProgramLink'
 
 const StyledPlayer = styled(Card)`
   padding: 0;
@@ -201,11 +202,6 @@ const NextUpText = styled.div`
   `)}
 `
 
-const TimetableLinkText = styled.div`
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-`
-
 const GridTextCollapse = styled(Collapse)`
   grid-area: 1 / 1 / 1 / 1;
 
@@ -331,11 +327,7 @@ const Player = ({ currentProgram, ...props }) => {
             collapsed={!timetableVisible}
             identifier="TimetableLinkText"
           >
-            <TimetableLinkText>
-              <Link href="https://o94.at/de/programm/programm-uebersicht">
-                Programm für {new Date().toLocaleDateString('de-AT')}
-              </Link>
-            </TimetableLinkText>
+            <ProgramLink />
           </GridTextCollapse>
           <CollapseButton
             small

@@ -28,7 +28,8 @@ const Page = styled.main`
       'header header'
       'navigation navigation'
       'player player'
-      'timetable content'
+      'timetable-link timetable-link'
+      'timetable timetable'
       'links content'
       'footer footer';
   `)}

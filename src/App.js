@@ -14,7 +14,8 @@ import Timetable from './components/Timetable'
 import { minDesktop, minTablet } from './themes/media'
 import orange from './themes/orange'
 import { progInfo } from './service/api'
-import ctw from './assets/ctw2021_banner_web.png'
+import ProgramLink from './components/ProgramLink'
+// import ctw from './assets/ctw2021_banner_web.png'
 
 const GlobalStyle = createGlobalStyle`
   ${p => p.theme.global}
@@ -75,8 +76,19 @@ const PageTimetable = styled(Timetable)`
   `)}
 `
 
+const DesktopOnlyProgramLink = styled(ProgramLink)`
+  display: none;
+  grid-area: timetable-link;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  ${minDesktop(css`
+    display: initial;
+  `)}
+`
+
 const App = () => {
-  const [navToggled, setNavToggled] = useState(false)
+  // const [navToggled, setNavToggled] = useState(false)
   const [currentProgram, setCurrentProgram] = useState(null)
 
   useEffect(() => {
@@ -91,10 +103,10 @@ const App = () => {
       <GlobalStyle />
       <Page>
         <Header
-          onToggleNav={() => setNavToggled(!navToggled)}
-          navToggled={navToggled}
+        // onToggleNav={() => setNavToggled(!navToggled)}
+        // navToggled={navToggled}
         />
-        <PageNavCollapse
+        {/* <PageNavCollapse
           collapsed={!navToggled}
           maxSize="var(--nav-mobile-max-height)"
           transitionDuration="0.5s"
@@ -105,16 +117,17 @@ const App = () => {
         >
           <Navigation />
           <LinksOnlyMobile />
-        </PageNavCollapse>
+        </PageNavCollapse> */}
         <PagePlayer currentProgram={currentProgram} />
+        <DesktopOnlyProgramLink />
         <PageTimetable currentProgram={currentProgram} />
-        <PageContent>
+        {/* <PageContent>
           <img
             src={ctw}
             alt="Claim the Waves: Save the Date: Feministische Radiotage 8.-11. Juli 2021"
           />
-        </PageContent>
-        <LinksNoMobile />
+        </PageContent> */}
+        {/* <LinksNoMobile /> */}
       </Page>
     </ThemeProvider>
   )
