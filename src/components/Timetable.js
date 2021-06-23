@@ -170,9 +170,8 @@ export const RawTimetable = ({ currentProgram, ...props }) => {
                   ? `https://o94.at/programm/sendereihen/${dailyPrograms[i].slug}`
                   : `https://o94.at/programm/sendereihen/id/${dailyPrograms[i].id}`
               }
-            >
-              {dailyPrograms[i].title}
-            </Link>
+              dangerouslySetInnerHTML={{ __html: dailyPrograms[i].title }}
+            />
           </Name>
           <EpisodeDescription empty={!dailyPrograms[i].note_title}>
             <Link
