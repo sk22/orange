@@ -318,8 +318,16 @@ const Player = ({ currentProgram, ...props }) => {
           >
             {next && (
               <NextUpText>
-                ab {getTimeFromDateString(next.start)}: {next.name}
-                {next.note_title && <> – {next.note_title}</>}
+                ab {getTimeFromDateString(next.start)}:{' '}
+                <span dangerouslySetInnerHTML={{ __html: next.name }} />
+                {next.note_title && (
+                  <>
+                    {' – '}
+                    <span
+                      dangerouslySetInnerHTML={{ __html: next.note_title }}
+                    />
+                  </>
+                )}
               </NextUpText>
             )}
           </GridTextCollapse>
